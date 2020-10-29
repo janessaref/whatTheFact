@@ -9,8 +9,9 @@
     /* background: linear-gradient(180deg, #141e30, #004e92) !important; */
     /* background: linear-gradient(150deg, #041b2d, #004E9A, #428cd4, #ff9cda, #ea4492)!important; */
     /* background: linear-gradient(150deg, #041b2d, #004E9A)!important; */
-    /* background: linear-gradient(300deg, rgb(86, 128, 233), rgb(132, 206, 235, .5) 60%), linear-gradient(217deg, rgb(90, 185, 234), rgba(136, 96, 208) 80%), linear-gradient(312deg, rgb(132, 206, 235), rgb(193, 200, 228) 80%), linear-gradient( 396deg, rgba(136, 96, 208), rgb(86, 128, 233) 100%); */
-    background: background-size: 100% !important;
+    background: linear-gradient(300deg, rgb(86, 128, 233), rgb(132, 206, 235, .5) 60%), linear-gradient(217deg, rgb(90, 185, 234), rgba(136, 96, 208) 80%), linear-gradient(312deg, rgb(132, 206, 235), rgb(193, 200, 228) 80%), linear-gradient( 396deg, rgba(136, 96, 208), rgb(86, 128, 233) 100%);
+    /* linear-gradient(#002e62, #0a010d)!important; */
+    background-size: 100% !important;
     background-position: center !important;
     /* height: 100vh !important; */
     height: 100vh !important;
