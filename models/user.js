@@ -4,6 +4,11 @@ var bcrypt = require("bcryptjs");
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
         // The email cannot be null, and must be a proper email before creation
+        username: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            unique: true
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -16,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+            is: /^[0-9a-f]{64}$/i,
             validate: {
                 len: [8, 50]
             }
@@ -29,5 +35,6 @@ module.exports = function(sequelize, DataTypes) {
     User.addHook("beforeCreate", function(user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     });
+
     return User;
 };
