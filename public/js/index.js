@@ -1,5 +1,26 @@
 $(document).ready(function() {
 
+    $(document).on('keypress', function(enter) {
+        if (enter.which == 13) {
+            var userInput = $("#search").val().trim();
+            var search = encodeURIComponent(userInput);
+            console.log(search);
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    // CARD FLIP
+
     var $num = $('.cardContainer .card').length;
 
     var $even = $num / 2;
