@@ -16,7 +16,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // user route loads blog.html
+  // user route loads user.html  or could memeber or just link back to the front page?
   app.get("/user", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/user.html"));
   });
