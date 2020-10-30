@@ -125,7 +125,25 @@ module.exports = function(app) {
 
 
   //Returning JSON data for all searches for a specific user -FROM THE API
-  app.get("/api/member/:id/search", function(req,res){
+
+    app.get("/api/user_data", function(req, res) {
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        // Otherwise send back the user's email and id
+        // Sending back a password, even a hashed password, isn't a good idea
+        res.json({
+          email: req.user.email,
+          id: req.user.id
+        });
+      }
+    });
+
+
+  //Returning JSON data for all searches for a specific user -FROM THE API
+  app.get("/api/user/:id/search", function(req,res){
+
     db.User.findOne({Where: {
       id: req.params.id
     },
@@ -138,7 +156,8 @@ module.exports = function(app) {
   });
 
 //Returns JSON DATA for a specific search belonging to a specific user
-  app.get("/api/member/:id/search/:searchId", function(req,res){
+
+  app.get("/api/user/:id/search/:searchId", function(req,res){
     db.User.findOne({Where: {
       id: req.params.id
     },
