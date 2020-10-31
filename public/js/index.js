@@ -1,12 +1,105 @@
+const search = require("../../models/search");
+
 $(document).ready(function() {
 
-    $(document).on('keypress', function(enter) {
-        if (enter.which == 13) {
+
+
+    //Axios Call
+
+    // When user hits enter
+    $(document).on('keypress', function(event) {
+        if (event.which == 13) {
             var userInput = $("#search").val().trim();
-            var search = encodeURIComponent(userInput);
+            var userSearch = encodeURIComponent(userInput);
             console.log(search);
         }
     });
+
+    event.preventDefault();
+
+    var search = $("#search").val().trim();
+
+    console.log("searchterm" + search);
+
+    $.ajax({
+        url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        console.log(response.claims[0].text)
+
+
+        let results = {
+            search_term: $("#searchterm").val().trim(),
+            title: response.claims[0].claimReview[0].title,
+            body: response.claims[0].text,
+            url: response.claims[0].claimReview[0].url,
+            rating: response.claims[0].claimReview[0].textualRating
+        }
+
+        $.ajax("/api/search", {
+            type: "POST",
+            data: results
+        }).then(
+            function() {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+    });
+
+
+    // When the page loads, grab all of our chirps
+    $.get("/api/search", function(data) {
+
+        if (data.length !== 0) {
+
+            for (var i = 0; i < data.length; i++) {
+
+                var card = $("<a>").attr("href", data[i].url);
+                card.addClass("ui card");
+
+                var content = $("<div>");
+                content.addClass("content");
+                card.append(content);
+
+                var header = $("<div>").html(data[i].title);
+                header.addClass("header");
+                content.append(header);
+
+                var meta = $("<div>").html(data[i].publisher);
+                meta.addClass("meta");
+                content.append(meta);
+
+                var description = $("<div>").html("<p>" + data[i].body + "</p>");
+                description.addClass("description");
+                content.append(header);
+
+                var rating = $("<div>").html("<i>" + data[i].body + "</i>");
+                rating.addClass("extra content");
+                content.append(rating);
+
+                // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
+                // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
+                // card.append("<p>" + "URL: " + data[i].url + "</p>");
+                // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
+
+                $("#factchecks").prepend(card);
+
+            }
+
+        }
+
+    });
+
+
+
+
+
+
+
+
+
 
 
     // CARD FLIP
@@ -58,12 +151,11 @@ $(document).ready(function() {
 });
 
 
-
+a
 var timesClicked = 1;
 
 $(".search").click(function(e) {
     timesClicked++;
-    console.log(timesClicked);
     if (timesClicked % 2 == 0) {
         async function display() {
             document.getElementById("search").style.display = "inline-block";
@@ -72,13 +164,14 @@ $(".search").click(function(e) {
             $("#search").focus();
         });
         display();
-        // Remove any old one
+
+        document.querySelector("h2").style.color = "#141414";
 
         // Setup
-        var posX = $(this).offset().left,
-            posY = $(this).offset().top,
-            buttonWidth = $(this).width(),
-            buttonHeight = $(this).height();
+        var posX = $(".search").offset().left,
+            posY = $(".search").offset().top,
+            buttonWidth = $(".search").width(),
+            buttonHeight = $(".search").height();
 
         // Add the element
         $(".search").append("<span class='ripple'></span>");
@@ -106,7 +199,7 @@ $(".search").click(function(e) {
     } else {
         $(".ripple").remove();
         document.getElementById("search").style.display = "none";
-        console.log("removed");
+        document.querySelector("h2").style.color = "#ffff";
     }
 });
 
