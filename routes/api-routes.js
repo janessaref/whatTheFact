@@ -7,6 +7,14 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
+     // Using the passport.authenticate middleware with our local strategy.
+    // If the user has valid login credentials, send them to the members page.
+    // Otherwise the user will be sent an error
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+        // console.log(req.user);
+        res.json(req.user);
+    });
+
     // Add sequelize code to get all books and return them as JSON
     // app.get("/api/all", function(req, res) {
     //   db.findAll({}).then(function(results){
@@ -14,6 +22,31 @@ module.exports = function(app) {
     //     res.json(results);
     //   })
     // });
+    app.post("/api/signup", function(req, res) {
+        // console.log(req.body);
+        db.User.create({
+                // firstname: req.body.firstname,
+                // lastname: req.body.lastname,
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+            })
+            //after that redirect to the login 
+            .then(function() {
+                // console.log("what");
+                res.redirect(307, "/api/login");
+            })
+            //if it doesn't create a new user throw a status 404 error
+            .catch(function(err) {
+                res.status(401).json(err);
+            });
+    });
+
+    // Route for logging user out
+  app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+  });
 
 
     // TESTING API WITHOUT USER ID GET THE INFO
@@ -76,42 +109,14 @@ module.exports = function(app) {
     // });
 
 
-    // Using the passport.authenticate middleware with our local strategy.
-    // If the user has valid login credentials, send them to the members page.
-    // Otherwise the user will be sent an error
-    app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        // console.log(req.user);
-        res.json(req.user);
-    });
+   
 
     // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
     // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
     // otherwise send back an error
-    app.post("/api/signup", function(req, res) {
-        // console.log(req.body);
-        db.User.create({
-                // firstname: req.body.firstname,
-                // lastname: req.body.lastname,
-                username: req.body.username,
-                email: req.body.email,
-                password: req.body.password
-            })
-            //after that redirect to the login 
-            .then(function() {
-                // console.log("what");
-                res.redirect(307, "/api/login");
-            })
-            //if it doesn't create a new user throw a status 404 error
-            .catch(function(err) {
-                res.status(401).json(err);
-            });
-    });
+  
 
-    // Route for logging user out
-    app.get("/logout", function(req, res) {
-        req.logout();
-        res.redirect("/");
-    });
+    
 
 
     //this one might be weird, might need changing --??
@@ -182,39 +187,6 @@ module.exports = function(app) {
 
     });
 
-
-    // GET route for getting all of the posts
-    // app.get("/api/posts", function(req, res) {
-    //   var query = {};
-    //   if (req.query.author_id) {
-
-    //     // axios
-    //  .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query="+ search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-    //  .then(function(res) {
-    //      console.log(res.data.claims[1,2]);
-    //      //sequelize 
-
-
-    //  });
-
-
-    //  //
-
-    //     query.AuthorId = req.query.author_id;
-    //   }
-    //   db.Post.findAll({
-    //     where: query
-    //   }).then(function(dbPost) {
-    //     res.json(dbPost);
-    //   });
-    // });
-
-
-    // axios
-    // .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query=flat%20earth&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-    // .then(function(res) {
-    //     console.log(res.data);
-    // });
 
 
 

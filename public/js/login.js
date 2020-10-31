@@ -1,4 +1,4 @@
-$(document).ready(function() {
+// $(document).ready(function() {
     // Getting references to our form and inputs
     var loginForm = $(".login");
     var usernameInput = $("input#username-input");
@@ -40,5 +40,5 @@ $(document).ready(function() {
           console.log(err);
         });
     }
-  });
+  // });
   
