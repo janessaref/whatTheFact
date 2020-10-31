@@ -8,51 +8,6 @@ $(document).ready(function() {
         }
     });
 
-    $("#search").click(function(e) {
-
-        // Remove any old one
-        $(".search").click(function(e) {
-                $(".ripple").remove();
-            })
-            // Setup
-        var posX = $(this).offset().left,
-            posY = $(this).offset().top,
-            buttonWidth = $(this).width(),
-            buttonHeight = $(this).height();
-
-        // Add the element
-        $(".search").append("<span class='ripple'></span>");
-
-        console.log($(this));
-        // Make it round!
-        if (buttonWidth >= buttonHeight) {
-            buttonHeight = buttonWidth;
-        } else {
-            buttonWidth = buttonHeight;
-        }
-
-        // Get the center of the element
-        var x = e.pageX - posX - buttonWidth / 2;
-        var y = e.pageY - posY - buttonHeight / 2;
-
-
-        // Add the ripples CSS and start the animation
-        $(".ripple").css({
-            width: buttonWidth,
-            height: buttonHeight,
-            top: y + 'px',
-            left: x + 'px'
-        }).addClass("rippleEffect");
-    });
-
-
-
-
-
-
-
-
-
 
     // CARD FLIP
 
@@ -100,4 +55,57 @@ $(document).ready(function() {
             $('.cardContainer .active').next().trigger('click');
         }
     });
+});
+
+
+
+var timesClicked = 1;
+
+$(".search").click(function(e) {
+    timesClicked++;
+    console.log(timesClicked);
+    if (timesClicked % 2 == 0) {
+        async function display() {
+            document.getElementById("search").style.display = "inline-block";
+        }
+        display().then(function() {
+            $("#search").focus();
+        });
+        display();
+        // Remove any old one
+
+        // Setup
+        var posX = $(this).offset().left,
+            posY = $(this).offset().top,
+            buttonWidth = $(this).width(),
+            buttonHeight = $(this).height();
+
+        // Add the element
+        $(".search").append("<span class='ripple'></span>");
+
+        // Make it round!
+        if (buttonWidth >= buttonHeight) {
+            buttonHeight = buttonWidth;
+        } else {
+            buttonWidth = buttonHeight;
+        }
+
+        // Get the center of the element
+        var x = e.pageX - posX - buttonWidth / 2;
+        var y = e.pageY - posY - buttonHeight / 2;
+
+
+        // Add the ripples CSS and start the animation
+        $(".ripple").css({
+            width: buttonWidth,
+            height: buttonHeight,
+            top: y + 'px',
+            left: x + 'px'
+        }).addClass("rippleEffect");
+
+    } else {
+        $(".ripple").remove();
+        document.getElementById("search").style.display = "none";
+        console.log("removed");
+    }
 });
