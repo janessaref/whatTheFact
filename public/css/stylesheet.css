@@ -182,6 +182,7 @@ body {
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: bolder;
     letter-spacing: 0.1em;
+    display: none;
 }
 
 .container input:hover {
