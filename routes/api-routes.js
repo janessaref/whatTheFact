@@ -98,7 +98,7 @@ module.exports = function(app) {
             })
             //after that redirect to the login 
             .then(function() {
-                console.log("what");
+                // console.log("what");
                 res.redirect(307, "/api/login");
             })
             //if it doesn't create a new user throw a status 404 error
