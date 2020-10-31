@@ -80,7 +80,7 @@ module.exports = function(app) {
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        console.log(req.user);
+        // console.log(req.user);
         res.json(req.user);
     });
 
@@ -88,7 +88,7 @@ module.exports = function(app) {
     // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
     // otherwise send back an error
     app.post("/api/signup", function(req, res) {
-        console.log(req.body);
+        // console.log(req.body);
         db.User.create({
                 // firstname: req.body.firstname,
                 // lastname: req.body.lastname,
@@ -136,7 +136,7 @@ module.exports = function(app) {
 
     app.get("/api/user_data", function(req, res) {
         // console.log(req.body);
-        console.log(res.user);
+        // console.log(res.user);
         if (!req.user) {
             // The user is not logged in, send back an empty object
             res.json({});

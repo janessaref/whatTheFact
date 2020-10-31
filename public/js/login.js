@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   // When the form is submitted, we validate there's an username and password entered
   loginForm.on("submit", function(event) {
-    console.log(event);
+    // console.log(event);
     event.preventDefault();
     var userData = {
       username: usernameInput.val().trim(),
@@ -24,6 +24,10 @@ $(document).ready(function() {
     passwordInput.val("");
   });
 
+  
+
+
+
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(username, password) {
     console.log(username)
@@ -33,17 +37,18 @@ $(document).ready(function() {
       password: password
     })
     //only after that run this function
-      .then(function(data) {
+      .then(function(response) {
        
         //replace the whole window (everything you see in the browser with the members)
         window.location.replace("/user");
         // If there's an error, log the error
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
-  }
+      }) .catch(handleLoginErr);
+    }
 
+    function handleLoginErr(err, response) {
+        $("#alert .msg").text(err.response.JSON);
+        $("#alert").fadeIn(500);
+    }
   
 
 

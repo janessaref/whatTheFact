@@ -10,7 +10,7 @@ $(document).ready(function() {
       if (enter.which == 13) {
           var userInput = $("#search").val().trim();
           var search = encodeURIComponent(userInput);
-          console.log(search);
+          // console.log(search);
       }
   });
 
@@ -112,7 +112,7 @@ $(".search").click(function(e) {
   } else {
       $(".ripple").remove();
       document.getElementById("search").style.display = "none";
-      console.log("removed");
+      // console.log("removed");
   }
 });
 

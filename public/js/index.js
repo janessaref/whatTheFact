@@ -63,7 +63,7 @@ var timesClicked = 1;
 
 $(".search").click(function(e) {
     timesClicked++;
-    console.log(timesClicked);
+    // console.log(timesClicked);
     if (timesClicked % 2 == 0) {
         async function display() {
             document.getElementById("search").style.display = "inline-block";
@@ -106,7 +106,7 @@ $(".search").click(function(e) {
     } else {
         $(".ripple").remove();
         document.getElementById("search").style.display = "none";
-        console.log("removed");
+      
     }
 });
 
