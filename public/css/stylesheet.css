@@ -21,7 +21,7 @@ body {
     background-position: center !important;
     /* height: 100vh !important; */
     height: 100vh !important;
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .ball {
