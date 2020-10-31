@@ -3,7 +3,7 @@ $(document).ready(function() {
     // and updates the HTML on the page updates the class text with date and email
   
     $.get("/api/user_data").then(function(data) {
-      $(".member-name").text(data);
+      $(".member-name").text(JSON.stringify(data.username));
     });
   });
   
