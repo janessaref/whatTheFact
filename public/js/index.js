@@ -62,9 +62,9 @@ $(document).ready(function() {
                         header.addClass("header");
                         content.append(header);
 
-                        var meta = $("<div>").html(data[i].publisher);
-                        meta.addClass("meta");
-                        content.append(meta);
+                        // var meta = $("<div>").html(data[i].publisher);
+                        // meta.addClass("meta");
+                        // content.append(meta);
 
                         var description = $("<div>").html("<p>" + data[i].body + "</p>");
                         description.addClass("description");
