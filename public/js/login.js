@@ -33,7 +33,7 @@ $(document).ready(function() {
       //only after that run this function
         .then(function() {
           //replace the whole window (everything you see in the browser with the members)
-          window.location.replace("/members");
+          window.location.replace("/user");
           // If there's an error, log the error
         })
         .catch(function(err) {

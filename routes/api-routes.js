@@ -50,29 +50,7 @@ module.exports = function(app) {
     //get from the userdb
 
   // });
-// Post route for creating a new user
-//   app.post("/api/user/new", function(req,res){
-// //to the user db
-// db.User.create(
-//   {username:req.body.username,
-//     email: req.body.email,
-//     password: req.body.password,
-    
-//    }
-  
-  
-//   ).then(function(dbUser) {
-//   res.json(dbUser);
-// });
 
-//   });
-//EXAMPLE
-
-// app.post("/api/posts", function(req, res) {
-//   db.Post.create(req.body).then(function(dbPost) {
-//     res.json(dbPost);
-//   });
-// });
 
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the members page.
@@ -133,6 +111,8 @@ module.exports = function(app) {
   //Returning JSON data for all searches for a specific user -FROM THE API
 
     app.get("/api/user_data", function(req, res) {
+      // console.log(req.body);
+      console.log(res.user);
       if (!req.user) {
         // The user is not logged in, send back an empty object
         res.json({});
@@ -140,6 +120,7 @@ module.exports = function(app) {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
+          username: req.user.username,
           email: req.user.email,
           id: req.user.id
         });
