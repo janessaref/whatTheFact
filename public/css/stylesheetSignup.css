@@ -219,7 +219,7 @@ body {
     width: 25px;
     height: 2px;
     border: none;
-    background: white;
+    /* background: white; */
     border-radius: 0%;
     transform: rotate(-45deg);
 }

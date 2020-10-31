@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $(document).on('keypress', function(enter) {
         if (enter.which == 13) {
-            var userInput = $("#search").val().trim();
+            var userInput = $("#search").val();
             var search = encodeURIComponent(userInput);
             console.log(search);
         }
@@ -113,7 +113,7 @@ $(".search").click(function(e) {
 
 // searchterm is the name of the ID in the html
 // this should all the be inside the search button click
-var search = $("#searchterm").val().trim();
+var search = $("#search").val();
 
 // AJAX CALL FOR FACT CHECKER
 $.ajax({
@@ -125,7 +125,7 @@ $.ajax({
 
     // setting results into an object to be passed into API route
     let results = {
-        search_term: $("#searchterm").val().trim(),
+        search_term: $("#search").val(),
         title: response.claims[0].claimReview[0].title,
         body: response.claims[0].text,
         url: response.claims[0].claimReview[0].url,
