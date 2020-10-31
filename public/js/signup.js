@@ -4,27 +4,27 @@ $(document).ready(function() {
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
     var usernameInput = $("input#username-input");
-    var firstnameInput = $("input#firstname-input");
-    var lastnameInput = $("input#lastname-input");
+    // var firstnameInput = $("input#firstname-input");
+    // var lastnameInput = $("input#lastname-input");
 
     // When the signup button is clicked, we validate the email and password are not blank
     signUpForm.on("submit", function(event) {
         event.preventDefault();
         var userData = {
-            firstname: firstnameInput.val().trim(),
-            lastname: lastnameInput.val().trim(),
+            // firstname: firstnameInput.val().trim(),
+            // lastname: lastnameInput.val().trim(),
             username: usernameInput.val().trim(),
             email: emailInput.val().trim(),
             password: passwordInput.val().trim()
         };
 
-        if (!userData.firstname || !userData.lastname || !userData.username || !userData.email || !userData.password) {
+        if (!userData.username || !userData.email || !userData.password) {
             return;
         }
         // If we have an email and password, run the signUpUser function
         signUpUser(userData.firstname, userData.lastname, userData.username, userData.email, userData.password);
-        firstnameInput.val("");
-        lastnameInput.val("");
+        // firstnameInput.val("");
+        // lastnameInput.val("");
         usernameInput.val("");
         emailInput.val("");
         passwordInput.val("");
@@ -47,8 +47,8 @@ $(document).ready(function() {
             .catch(handleLoginErr);
     }
 
-    function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
+    function handleLoginErr(err, response) {
+        $("#alert .msg").text(err.response.JSON);
         $("#alert").fadeIn(500);
     }
 });

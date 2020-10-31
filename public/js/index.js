@@ -1,5 +1,6 @@
 // const search = require("../../models/search");
 
+
 $(document).ready(function() {
 
 
@@ -11,6 +12,7 @@ $(document).ready(function() {
         if (event.which == 13) {
             var userInput = $("#search").val().trim();
             var userSearch = encodeURIComponent(userInput);
+
             console.log(userSearch);
 
 
@@ -86,15 +88,6 @@ $(document).ready(function() {
                 }
 
             });
-        }
-    });
-
-
-
-
-
-
-
 
 
     // CARD FLIP
