@@ -9,15 +9,6 @@ $(document).ready(function() {
     });
 
 
-
-
-
-
-
-
-
-
-
     // CARD FLIP
 
     var $num = $('.cardContainer .card').length;
