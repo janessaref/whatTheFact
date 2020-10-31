@@ -34,8 +34,8 @@ $(document).ready(function() {
     // Otherwise we log any errors
     function signUpUser(firstname, lastname, username, email, password) {
         $.post("/api/signup", {
-                firstname: firstname,
-                lastname: lastname,
+                // firstname: firstname,
+                // lastname: lastname,
                 username: username,
                 email: email,
                 password: password
