@@ -1,6 +1,10 @@
 const axios = require("axios");
+//  app.get put inside of a route
+var passport = require("../config/passport");
 var db = require("../models");
 
+// Routes
+// =============================================================
 module.exports = function(app) {
 
 
@@ -169,77 +173,79 @@ app.get("/api/user_data", function(req, res) {
     }
 });
 
-
-
 //Returning JSON data for all searches for a specific user -FROM THE API
 app.get("/api/user/:id/search", function(req, res) {
 
-            db.User.findOne({
-                Where: {
-                    id: req.params.id
-                },
-                include: [db.Search]
 
-            });
+            //Returning JSON data for all searches for a specific user -FROM THE API
+            app.get("/api/user/:id/search", function(req, res) {
 
-
-            //Returns JSON DATA for a specific search belonging to a specific user
-
-            app.get("/api/user/:id/search/:searchId", function(req, res) {
                         db.User.findOne({
                             Where: {
                                 id: req.params.id
                             },
-                            include: [db.SearchId]
-                                //this needs more
-                        }).then(function(dbUser) {
-                            res.json(dbUser);
+                            include: [db.Search]
+
                         });
 
 
-                        // GET route for getting all of the posts
-                        // app.get("/api/posts", function(req, res) {
-                        //   var query = {};
-                        //   if (req.query.author_id) {
+                        //Returns JSON DATA for a specific search belonging to a specific user
 
-                        //     // axios
-                        //  .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query="+ search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-                        //  .then(function(res) {
-                        //      console.log(res.data.claims[1,2]);
-                        //      //sequelize 
+                        app.get("/api/user/:id/search/:searchId", function(req, res) {
+                            db.User.findOne({
+                                Where: {
+                                    id: req.params.id
+                                },
+                                include: [db.SearchId]
+                                    //this needs more
+                            }).then(function(dbUser) {
+                                res.json(dbUser);
+                            });
 
-
-                        //  });
-
-
-                        //  //
-
-                        //     query.AuthorId = req.query.author_id;
-                        //   }
-                        //   db.Post.findAll({
-                        //     where: query
-                        //   }).then(function(dbPost) {
-                        //     res.json(dbPost);
-                        //   });
-                        // });
-
-
-                        // axios
-                        // .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query=flat%20earth&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-                        // .then(function(res) {
-                        //     console.log(res.data);
-                        // });
-
-
-
-
-
-
-
-
-
-
-
-
-                        //END OF MODULES, DELETE AND SOMEONE MIGHT CRY!!!
+                        });
                     }
+                    // GET route for getting all of the posts
+                    // app.get("/api/posts", function(req, res) {
+                    //   var query = {};
+                    //   if (req.query.author_id) {
+
+                    //     // axios
+                    //  .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query="+ search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
+                    //  .then(function(res) {
+                    //      console.log(res.data.claims[1,2]);
+                    //      //sequelize 
+
+
+                    //  });
+
+
+                    //  //
+
+                    //     query.AuthorId = req.query.author_id;
+                    //   }
+                    //   db.Post.findAll({
+                    //     where: query
+                    //   }).then(function(dbPost) {
+                    //     res.json(dbPost);
+                    //   });
+                    // });
+
+
+                    // axios
+                    // .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query=flat%20earth&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
+                    // .then(function(res) {
+                    //     console.log(res.data);
+                    // });
+
+
+
+
+
+
+
+
+
+
+
+
+                    //END OF MODULES, DELETE AND SOMEONE MIGHT CRY!!!

@@ -34,14 +34,14 @@ $(document).ready(function() {
     // Otherwise we log any errors
     function signUpUser(firstname, lastname, username, email, password) {
         $.post("/api/signup", {
-                firstname: firstname,
-                lastname: lastname,
+                // firstname: firstname,
+                // lastname: lastname,
                 username: username,
                 email: email,
                 password: password
             })
             .then(function(data) {
-                window.location.replace("/members");
+                window.location.replace("/user");
                 // If there's an error, handle it by throwing up a bootstrap alert
             })
             .catch(handleLoginErr);

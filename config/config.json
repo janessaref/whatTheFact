@@ -1,7 +1,6 @@
 {
     "development": {
-        "username": "root",
-        "password": "root",
+
         "username": "jerrifong",
         "password": "mepassword",
         "database": "factcheck_db",
