@@ -109,3 +109,69 @@ $(".search").click(function(e) {
         console.log("removed");
     }
 });
+
+
+// searchterm is the name of the ID in the html
+// this should all the be inside the search button click
+var search = $("#searchterm").val().trim();
+
+// AJAX CALL FOR FACT CHECKER
+$.ajax({
+    url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
+    method: "GET"
+}).then(function(response) {
+    // console.log(response);
+    // console.log(response.claims[0].text)
+
+    // setting results into an object to be passed into API route
+    let results = {
+        search_term: $("#searchterm").val().trim(),
+        title: response.claims[0].claimReview[0].title,
+        body: response.claims[0].text,
+        url: response.claims[0].claimReview[0].url,
+        rating: response.claims[0].claimReview[0].textualRating
+    }
+
+    // Posts the data into the route
+    $.ajax("/api/search", {
+        type: "POST",
+        data: results
+    }).then(
+        function() {
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+
+
+});
+
+// idk if u need this but leaving it here and it grabs the saved searches to stay on the page
+// NOT INSIDE ANY BUTTON CLICK, should be outside and at the bottom of page!
+// When the page loads, grab all of our searches
+$.get("/api/search", function(data) {
+
+    // however many searches the user has, it will display the data
+    if (data.length !== 0) {
+
+        for (var i = 0; i < data.length; i++) {
+
+            // appends a new row for each search
+            var row = $("<div>");
+            // adding a css styling class named "search" to the row
+            row.addClass("search");
+
+            // appends all data in p tags inside the div
+            row.append("<p>" + "TITLE: " + data[i].title + " </p>");
+            row.append("<p>" + "TEXT: " + data[i].body + "</p>");
+            row.append("<p>" + "URL: " + data[i].url + "</p>");
+            row.append("<p>" + "RATING: " + data[i].rating + "</p>");
+
+            // searches will be stacked over each other hence prepend
+            $("#search-area").prepend(row);
+
+        }
+
+    }
+
+});
