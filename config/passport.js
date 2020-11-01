@@ -3,9 +3,9 @@ var PassportHerokuAddon = require('passport-heroku-addon');
 var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
-passport.use(new PassportHerokuAddon({
-    sso_salt: process.env.SSO_SALT
-  }));
+// passport.use(new PassportHerokuAddon({
+//     sso_salt: process.env.SSO_SALT
+//   }));
   
   app.get('/heroku/resources/:id', 
     passport.authenticate('heroku-addon'),
