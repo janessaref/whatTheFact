@@ -6,29 +6,45 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
-
-
-    app.get("/api/posts", function(req, res) {
-        var query = {};
-        if (req.query.author_id) {
-
-            // axios
-            axios.get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-                .then(function(res) {
-                    console.log(res.data.claims[1, 2]);
-                    //sequelize 
-
-
-                });
-
-
-            query.AuthorId = req.query.author_id;
-        }
-        db.Post.findAll({
-            where: query
-        }).then(function(dbPost) {
-            res.json(dbPost);
+    app.get("/api/search", function(req, res) {
+        db.Search.findAll({}).then(function(dbSearch) {
+            res.json(dbSearch);
         });
+    });
+
+    app.post("/api/search", function(req, res) {
+        let search_term = req.body.search_term;
+        let apiKey = "AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI"
+        console.log("THIS IS FOR AXIOS", search_term)
+
+        axios({
+                url: `https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=${search_term}&key=${apiKey}`,
+                method: 'GET',
+                responseType: 'json',
+            })
+            .then(function(response) {
+
+                let data = response.data.claims[0]
+                let title = data.claimReview[0].title;
+                let body = data.text;
+                let url = data.claimReview[0].url;
+                let rating = data.claimReview[0].textualRating;
+
+                db.Search.create({
+                    search_term: search_term,
+                    title: title,
+                    body: body,
+                    url: url,
+                    rating: rating
+                }).then(function(dbSearch) {
+                    res.json(dbSearch);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+
     });
 
 
