@@ -71,6 +71,8 @@ _How?_
 
 _What?_
 
+A simple page built just for you to keep your searches. 
+
 _Why?_
 
 So that users can save their searches and their data. Sure you can copy the information down into a word document or onto a piece of paper but, that's not always convenient, is it? Unless you are a scientist working in a remote rain forest it is unlikely you will carry a notebook and pen with you where ever you go. And if you wanted to ever refer back to your search you might be willing to go through the whole process of searching up all the different terms again or you might want things to save conveniently to your own profile. 
@@ -78,7 +80,12 @@ So that users can save their searches and their data. Sure you can copy the info
 
 _How?_
 
-This was a complex task to achieve as a developer. 
+This was a complex task to achieve as a developer. Not because the page was overly difficult to design but because it was difficult to conceptualize. How were we going to get the data that the user called to save on the page-Jerri and Rachael spent hours discussing the file paths and how they would get from the search to the save data. There were many ideas. 
+    1. Create a members only website, where you have to log in to use the fact check and you can save your searches 
+    2. Create a front end search and a user search that has a button that allows you to save your searches into
+        a. a database
+        b. local storage    
+
  
 
 ### __4. A saved search__
@@ -122,8 +129,11 @@ Backgrounds are fun, there should be more of them!
  _Aaron_
 
  _Janessa_
+
   
 _Rachael_  
+
+
 
 ## Usage
 ### This site is for anyone. Anyone who finds themselves lost in the world of information that the modern world grants us and would like a little more clarity, insight and direction in that world. 

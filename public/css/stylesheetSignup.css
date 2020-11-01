@@ -5,10 +5,10 @@ body {
 
 /* NAV */
 
+
 /* .hidden.menu {
     display: none;
 }
-
 .ui.secondary.inverted.pointing.menu {
     border: none;
 } */
@@ -22,12 +22,16 @@ body {
     /* height: 100vh !important; */
     height: 100vh !important;
 }
-
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+  }
 
 /* .box {
     position: absolute;
 }
-
 #bigBox {
     background: #a6a6a6;
     top: 35vh;
@@ -37,7 +41,6 @@ body {
     margin: 20px;
     z-index: 1 !important;
 }
-
 #smallBox {
     background: #323232;
     top: 25vh;
@@ -98,6 +101,7 @@ body {
     box-sizing: border-box;
 }
 
+
 /* .container #searchContainer {
     position: absolute;
     margin: auto;
@@ -126,10 +130,10 @@ body {
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
 
+
 /* .container .search:hover {
     cursor: pointer;
 }
-
 .container .search::before {
     content: "";
     position: absolute;
@@ -144,7 +148,6 @@ body {
     transform: rotate(45deg);
     transition: all 0.5s;
 }
-
 .container .search::after {
     content: "";
     position: absolute;
@@ -207,6 +210,7 @@ body {
     position: absolute;
 }
 
+
 /* .container input:focus~.search::before {
     top: 0;
     left: 0;
@@ -219,10 +223,11 @@ body {
     width: 25px;
     height: 2px;
     border: none;
-    /* background: white; */
+    background: white;
     border-radius: 0%;
     transform: rotate(-45deg);
 }
+
 
 /* .container input::placeholder {
     color: white;
@@ -264,11 +269,9 @@ body {
 .ui.input>input {
     color: white !important;
 }
-
 ::placeholder {
     color: white !important;
 }
-
 .search.icon {
     color: white !important;
 } */
@@ -356,15 +359,19 @@ body {
 
 /* CARDSSSS */
 
+
 /* .cardContainer {
     position: relative;
     height: 300px;
     top: 60px;
     flex-direction: row;
     /* overflow-x: hidden; */
-    /* left: calc(50% - 300px);
+
+
+/* left: calc(50% - 300px);
     display: flex;
 } */
+
 
 /* .cardContainer .card {
     display: flex;
@@ -464,6 +471,7 @@ body {
     width: 120px;
     transition: 0.4s ease-out;
 }
+
 
 /* .circle {
     position: absolute;

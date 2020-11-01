@@ -117,41 +117,6 @@ $(".search").click(function(e) {
 });
 
 
-// searchterm is the name of the ID in the html
-// this should all the be inside the search button click
-// var search = $("#searchterm").val().trim();
-
-// AJAX CALL FOR FACT CHECKER
-// $.ajax({
-//   url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
-//   method: "GET"
-// }).then(function(response) {
-//   // console.log(response);
-//   // console.log(response.claims[0].text)
-
-//   // setting results into an object to be passed into API route
-//   let results = {
-//       search_term: $("#searchterm").val().trim(),
-//       title: response.claims[0].claimReview[0].title,
-//       body: response.claims[0].text,
-//       url: response.claims[0].claimReview[0].url,
-//       rating: response.claims[0].claimReview[0].textualRating
-//   }
-
-//   // Posts the data into the route
-//   $.ajax("/api/search", {
-//       type: "POST",
-//       data: results
-//   }).then(
-//       function() {
-//           // Reload the page to get the updated list
-//           location.reload();
-//       }
-//   );
-
-
-// });
-
 // idk if u need this but leaving it here and it grabs the saved searches to stay on the page
 // NOT INSIDE ANY BUTTON CLICK, should be outside and at the bottom of page!
 // When the page loads, grab all of our searches
