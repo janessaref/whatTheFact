@@ -21,8 +21,7 @@ body {
     background-position: center !important;
     /* height: 100vh !important; */
     height: 100vh !important;
-    overflow: hidden;
-}
+    overflow: hidden !important;
 
 .ball {
     position: absolute;
@@ -70,12 +69,12 @@ body {
     z-index: 4 !important;
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
-
+  
 .item {
     position: relative;
     z-index: 99 !important;
 }
-
+  
 #mainContainer {
     position: relative;
     z-index: 5 !important;
@@ -290,11 +289,9 @@ body {
 .ui.input>input {
     color: white !important;
 }
-
 ::placeholder {
     color: white !important;
 }
-
 .search.icon {
     color: white !important;
 } */

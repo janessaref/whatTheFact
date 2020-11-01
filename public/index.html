@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 </head>
@@ -25,33 +23,31 @@
                     <!-- <a class="item" href="/featured">Featured</a> -->
                     <a class="item" href="/about">About</a>
                     <a class="item" href="/contact">Contact</a>
-                  
 
                     <a class="item right floated" href="/login">Login</a>
                     <p class="item">/</p>
                     <a class="item" href="/signup">Sign Up</a>
-
                 </div>
-
             </div>
 
-
+            <div class="ui left aligned container" id="mainContainer">
+                <h1 class="ui inverted header" id="mainHead">
+                    Fact Check
+                </h1>
+                <h2>Search a term, quote, and more.</h2>
+            </div>
+            <div class="ui container searching" id="searchContainer">
+                <input type="text" placeholder="Search..." id="search">
+                </input>
+                <div class="search"></div>
+            </div>
+            <div class="ball" id="bigball"></div>
+            <div class="ball" id="mediumball"></div>
+            <div class="ball" id="smallball"></div>
         </div>
-        <div class="ui left aligned container" id="mainContainer">
-            <h1 class="ui inverted header" id="mainHead">
-                Fact Check
-            </h1>
-            <h2>Search a term, quote, and more.</h2>
-        </div>
-        <div class="ui container searching" id="searchContainer">
-            <input type="text" placeholder="Search..." id="search">
-            </input>
-            <div class="search"></div>
-        </div>
-        <div class="ball" id="bigball"></div>
-        <div class="ball" id="mediumball"></div>
-        <div class="ball" id="smallball"></div>
     </div>
+
+   
 
 
     <div class="ui vertical stripe segment" id="featured">
@@ -131,5 +127,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script src="js/index.js"></script>
 </body>
-
-</html>

@@ -1,4 +1,5 @@
-const search = require("../../models/search");
+// const search = require("../../models/search");
+
 
 $(document).ready(function() {
 
@@ -11,95 +12,82 @@ $(document).ready(function() {
         if (event.which == 13) {
             var userInput = $("#search").val().trim();
             var userSearch = encodeURIComponent(userInput);
-            console.log(search);
-        }
-    });
 
-    event.preventDefault();
-
-    var search = $("#search").val().trim();
-
-    console.log("searchterm" + search);
-
-    $.ajax({
-        url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
-        method: "GET"
-    }).then(function(response) {
-        console.log(response);
-        console.log(response.claims[0].text)
+            console.log(userSearch);
 
 
-        let results = {
-            search_term: $("#searchterm").val().trim(),
-            title: response.claims[0].claimReview[0].title,
-            body: response.claims[0].text,
-            url: response.claims[0].claimReview[0].url,
-            rating: response.claims[0].claimReview[0].textualRating
-        }
+            event.preventDefault();
 
-        $.ajax("/api/search", {
-            type: "POST",
-            data: results
-        }).then(
-            function() {
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-    });
+            $.ajax({
+                url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + userSearch + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
+                method: "GET"
+            }).then(function(response) {
+                console.log(response);
+                console.log(response.claims[0].text)
 
 
-    // When the page loads, grab all of our chirps
-    $.get("/api/search", function(data) {
+                let results = {
+                    search_term: $("#search").val().trim(),
+                    title: response.claims[0].claimReview[0].title,
+                    body: response.claims[0].text,
+                    url: response.claims[0].claimReview[0].url,
+                    rating: response.claims[0].claimReview[0].textualRating
+                }
 
-        if (data.length !== 0) {
-
-            for (var i = 0; i < data.length; i++) {
-
-                var card = $("<a>").attr("href", data[i].url);
-                card.addClass("ui card");
-
-                var content = $("<div>");
-                content.addClass("content");
-                card.append(content);
-
-                var header = $("<div>").html(data[i].title);
-                header.addClass("header");
-                content.append(header);
-
-                var meta = $("<div>").html(data[i].publisher);
-                meta.addClass("meta");
-                content.append(meta);
-
-                var description = $("<div>").html("<p>" + data[i].body + "</p>");
-                description.addClass("description");
-                content.append(header);
-
-                var rating = $("<div>").html("<i>" + data[i].body + "</i>");
-                rating.addClass("extra content");
-                content.append(rating);
-
-                // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
-                // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
-                // card.append("<p>" + "URL: " + data[i].url + "</p>");
-                // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
-
-                $("#factchecks").prepend(card);
-
-            }
-
-        }
-
-    });
+                $.ajax("/api/search", {
+                    type: "POST",
+                    data: results
+                }).then(
+                    function() {
+                        // Reload the page to get the updated list
+                        location.reload();
+                    }
+                );
+            });
 
 
+            // When the page loads, grab all of our chirps
+            $.get("/api/search", function(data) {
 
+                if (data.length !== 0) {
 
+                    for (var i = 0; i < data.length; i++) {
 
+                        var card = $("<a>").attr("href", data[i].url);
+                        card.addClass("ui card");
 
+                        var content = $("<div>");
+                        content.addClass("content");
+                        card.append(content);
 
+                        var header = $("<div>").html(data[i].title);
+                        header.addClass("header");
+                        content.append(header);
 
+                        var meta = $("<div>").html(data[i].publisher);
+                        meta.addClass("meta");
+                        content.append(meta);
 
+                        var description = $("<div>").html("<p>" + data[i].body + "</p>");
+                        description.addClass("description");
+                        content.append(header);
+
+                        var rating = $("<div>").html("<i>" + data[i].body + "</i>");
+                        rating.addClass("extra content");
+                        content.append(rating);
+
+                        // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
+                        // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
+                        // card.append("<p>" + "URL: " + data[i].url + "</p>");
+                        // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
+
+                        $("#factchecks").prepend(card);
+
+                    }
+
+                }
+
+            });
 
 
     // CARD FLIP
@@ -150,8 +138,6 @@ $(document).ready(function() {
     });
 });
 
-
-a
 var timesClicked = 1;
 
 $(".search").click(function(e) {
@@ -201,70 +187,4 @@ $(".search").click(function(e) {
         document.getElementById("search").style.display = "none";
         document.querySelector("h2").style.color = "#ffff";
     }
-});
-
-
-// searchterm is the name of the ID in the html
-// this should all the be inside the search button click
-var search = $("#searchterm").val().trim();
-
-// AJAX CALL FOR FACT CHECKER
-$.ajax({
-    url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
-    method: "GET"
-}).then(function(response) {
-    // console.log(response);
-    // console.log(response.claims[0].text)
-
-    // setting results into an object to be passed into API route
-    let results = {
-        search_term: $("#searchterm").val().trim(),
-        title: response.claims[0].claimReview[0].title,
-        body: response.claims[0].text,
-        url: response.claims[0].claimReview[0].url,
-        rating: response.claims[0].claimReview[0].textualRating
-    }
-
-    // Posts the data into the route
-    $.ajax("/api/search", {
-        type: "POST",
-        data: results
-    }).then(
-        function() {
-            // Reload the page to get the updated list
-            location.reload();
-        }
-    );
-
-
-});
-
-// idk if u need this but leaving it here and it grabs the saved searches to stay on the page
-// NOT INSIDE ANY BUTTON CLICK, should be outside and at the bottom of page!
-// When the page loads, grab all of our searches
-$.get("/api/search", function(data) {
-
-    // however many searches the user has, it will display the data
-    if (data.length !== 0) {
-
-        for (var i = 0; i < data.length; i++) {
-
-            // appends a new row for each search
-            var row = $("<div>");
-            // adding a css styling class named "search" to the row
-            row.addClass("search");
-
-            // appends all data in p tags inside the div
-            row.append("<p>" + "TITLE: " + data[i].title + " </p>");
-            row.append("<p>" + "TEXT: " + data[i].body + "</p>");
-            row.append("<p>" + "URL: " + data[i].url + "</p>");
-            row.append("<p>" + "RATING: " + data[i].rating + "</p>");
-
-            // searches will be stacked over each other hence prepend
-            $("#search-area").prepend(row);
-
-        }
-
-    }
-
 });
