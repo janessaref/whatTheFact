@@ -1,11 +1,16 @@
 const search = require("../../models/search");
 $(document).ready(function() {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14e4e9e8c149f432922788495c9356a239dc3649
     // When user hits enter
     $(document).on('keypress', function(event) {
         if (event.which == 13) {
             event.preventDefault();
             var userInput = $("#search").val().trim();
+<<<<<<< HEAD
             var userSearch = encodeURIComponent(userInput);
             // console.log(userSearch);
           
@@ -21,49 +26,66 @@ $(document).ready(function() {
                     body: response.claims[0].text,
                     url: response.claims[0].claimReview[0].url,
                     rating: response.claims[0].claimReview[0].textualRating
-                }
+=======
+            // var userSearch = encodeURIComponent(userInput);
 
-                $.ajax("/api/search", {
-                    type: "POST",
-                    data: results
-                }).then(
-                    function() {
-                        // Reload the page to get the updated list
-                        location.reload();
-                    }
-                );
-            });
+            event.preventDefault();
+            // var search = $("#searchterm").val().trim();
+            let searchTerm = {
+                search_term: userInput
+            }
+
+            // passes the data to post
+            $.ajax("/api/search", {
+                type: "POST",
+                data: searchTerm
+            }).then(
+                function() {
+                    // Reload the page to get the updated list
+                    // location.reload();
+>>>>>>> 14e4e9e8c149f432922788495c9356a239dc3649
+                }
+            );
 
 
             // When the page loads, grab all of our 
             $.get("/api/search", function(data) {
+                console.log(data);
 
                 if (data.length !== 0) {
 
                     for (var i = 0; i < data.length; i++) {
 
-                        var card = $("<a>").attr("href", data[i].url);
+                        var card = $("<div>")
                         card.addClass("ui card");
 
                         var content = $("<div>");
                         content.addClass("content");
                         card.append(content);
 
-                        var header = $("<div>").html(data[i].title);
+                        var header = $("<div>")
                         header.addClass("header");
+                        header.append("<h1>" + data[i].title + "</h1>");
                         content.append(header);
 
                         // var meta = $("<div>").html(data[i].publisher);
                         // meta.addClass("meta");
                         // content.append(meta);
 
-                        var description = $("<div>").html("<p>" + data[i].body + "</p>");
+                        var description = $("<div>");
                         description.addClass("description");
-                        content.append(header);
+                        description.append("<p>" + data[i].body + "</p>");
+                        content.append(description);
 
-                        var rating = $("<div>").html("<i>" + data[i].body + "</i>");
+                        var rating = $("<div>")
                         rating.addClass("extra content");
+                        rating.append("<i>" + data[i].rating + "</i>");
                         content.append(rating);
+
+                        var link = $("<a>").attr("href", data[i].url);
+                        link.append("<p>" + "Read article for " + data[i].search_term + " here")
+                        content.append(link);
+
 
                         // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
                         // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
@@ -79,6 +101,11 @@ $(document).ready(function() {
             });
         }
     });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 14e4e9e8c149f432922788495c9356a239dc3649
 
 
   
