@@ -106,6 +106,19 @@ module.exports = function(app) {
 
     //get from the userdb
 
+
+        //         });
+
+
+        //     query.AuthorId = req.query.author_id;
+        // }
+    //     db.Post.findAll({
+    //         where: query
+    //     }).then(function(dbPost) {
+    //         res.json(dbPost);
+    //     });
+    // });
+
     // });
 
 
