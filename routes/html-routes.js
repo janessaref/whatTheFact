@@ -17,12 +17,12 @@ module.exports = function(app) {
   });
 
   // user route loads blog.html
-  app.get("/user", authentication, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/user.html"));
-  });
-  // app.get("/user", function(req, res) {
+  // app.get("/user", authentication, function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/user.html"));
   // });
+  app.get("/user", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/user.html"));
+  });
 
   app.get("/about", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/about.html"));
