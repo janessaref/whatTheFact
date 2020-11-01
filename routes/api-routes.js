@@ -18,37 +18,19 @@ module.exports = function(app) {
                     console.log(res.data.claims[1, 2]);
                     //sequelize 
 
-    // Add sequelize code to get all books and return them as JSON
-    // app.get("/api/all", function(req, res) {
-    //   db.findAll({}).then(function(results){
-    //         //axios/ajax call goes here?
-    //     res.json(results);
-    //   })
-    // });
+
+                });
 
 
-    // TESTING API WITHOUT USER ID GET THE INFO
-    app.get("/api/search", function(req, res) {
-        db.Search.findAll({}).then(function(dbSearch) {
-            res.json(dbSearch);
+            query.AuthorId = req.query.author_id;
+        }
+        db.Post.findAll({
+            where: query
+        }).then(function(dbPost) {
+            res.json(dbPost);
         });
-
-
     });
-    // TESTING API WITHOUT USER ID TO POST THE SEARCH
-    app.post("/api/search", function(req, res) {
-        db.Search.create({
-            search_term: req.body.search_term,
-            title: req.body.title,
-            body: req.body.body,
-            url: req.body.url,
-            rating: req.body.rating
-        }).then(function(dbSearch) {
-            res.json(dbSearch);
-        });
 
-
-    });
 
 
 
@@ -84,27 +66,35 @@ module.exports = function(app) {
 
     //get from the userdb
 
+    // });
+    // Post route for creating a new user
+    //   app.post("/api/user/new", function(req,res){
+    // //to the user db
+    // db.User.create(
+    //   {username:req.body.username,
+    //     email: req.body.email,
+    //     password: req.body.password,
 
-                });
+    //    }
 
 
-            query.AuthorId = req.query.author_id;
-        }
-        db.Post.findAll({
-            where: query
-        }).then(function(dbPost) {
-            res.json(dbPost);
-        });
-    });
-
+    //   ).then(function(dbUser) {
+    //   res.json(dbUser);
     // });
 
+    //   });
+    //EXAMPLE
+
+    // app.post("/api/posts", function(req, res) {
+    //   db.Post.create(req.body).then(function(dbPost) {
+    //     res.json(dbPost);
+    //   });
+    // });
 
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the members page.
     // Otherwise the user will be sent an error
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        console.log(req.user);
         res.json(req.user);
     });
 
@@ -112,21 +102,19 @@ module.exports = function(app) {
     // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
     // otherwise send back an error
     app.post("/api/signup", function(req, res) {
-        console.log(req.body);
+        console.log(req.body)
         db.User.create({
-                // firstname: req.body.firstname,
-                // lastname: req.body.lastname,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
             })
             //after that redirect to the login 
             .then(function() {
-                console.log("what");
                 res.redirect(307, "/api/login");
-            })
-            //if it doesn't create a new user throw a status 404 error
-            .catch(function(err) {
+            }, function(err) {
+                console.log(err)
                 res.status(401).json(err);
             });
     });
@@ -159,8 +147,6 @@ module.exports = function(app) {
     //Returning JSON data for all searches for a specific user -FROM THE API
 
     app.get("/api/user_data", function(req, res) {
-        // console.log(req.body);
-        console.log(res.user);
         if (!req.user) {
             // The user is not logged in, send back an empty object
             res.json({});
@@ -168,88 +154,41 @@ module.exports = function(app) {
             // Otherwise send back the user's email and id
             // Sending back a password, even a hashed password, isn't a good idea
             res.json({
-                username: req.user.username,
                 email: req.user.email,
                 id: req.user.id
             });
         }
     });
 
-
     //Returning JSON data for all searches for a specific user -FROM THE API
     app.get("/api/user/:id/search", function(req, res) {
 
-        db.User.findOne({
-            Where: {
-                id: req.params.id
-            },
-            include: [db.Search]
 
-        }).then(function(dbUser) {
-            res.json(dbUser);
-        });
+        //Returning JSON data for all searches for a specific user -FROM THE API
+        app.get("/api/user/:id/search", function(req, res) {
 
+            db.User.findOne({
+                Where: {
+                    id: req.params.id
+                },
+                include: [db.Search]
+
+            });
+
+            //Returns JSON DATA for a specific search belonging to a specific user
+
+            app.get("/api/user/:id/search/:searchId", function(req, res) {
+                db.User.findOne({
+                    Where: {
+                        id: req.params.id
+                    },
+                    include: [db.SearchId]
+                        //this needs more
+                }).then(function(dbUser) {
+                    res.json(dbUser);
+                });
+            });
+        })
     });
-
-    //Returns JSON DATA for a specific search belonging to a specific user
-
-    app.get("/api/user/:id/search/:searchId", function(req, res) {
-        db.User.findOne({
-            Where: {
-                id: req.params.id
-            },
-            include: [db.SearchId]
-                //this needs more
-        }).then(function(dbUser) {
-            res.json(dbUser);
-        });
-
-    });
-
-
-    // GET route for getting all of the posts
-    // app.get("/api/posts", function(req, res) {
-    //   var query = {};
-    //   if (req.query.author_id) {
-
-    //     // axios
-    //  .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query="+ search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-    //  .then(function(res) {
-    //      console.log(res.data.claims[1,2]);
-    //      //sequelize 
-
-
-    //  });
-
-
-    //  //
-
-    //     query.AuthorId = req.query.author_id;
-    //   }
-    //   db.Post.findAll({
-    //     where: query
-    //   }).then(function(dbPost) {
-    //     res.json(dbPost);
-    //   });
-    // });
-
-
-    // axios
-    // .get("https://factchecktools.googleapis.com/v1alpha1/claims:search?query=flat%20earth&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI")
-    // .then(function(res) {
-    //     console.log(res.data);
-    // });
-
-
-
-
-
-
-
-
-
-
-
-
     //END OF MODULES, DELETE AND SOMEONE MIGHT CRY!!!
 }

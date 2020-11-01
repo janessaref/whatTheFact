@@ -22,6 +22,8 @@ body {
     /* height: 100vh !important; */
     height: 100vh !important;
     overflow: hidden !important;
+}
+
 
 .ball {
     position: absolute;

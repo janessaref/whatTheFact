@@ -1,7 +1,9 @@
 {
     "development": {
-        "username": "jerrifong",
-        "password": "mepassword",
+
+        "username": "root",
+        "password": "password",
+
         "database": "factcheck_db",
         "host": "127.0.0.1",
         "dialect": "mysql"

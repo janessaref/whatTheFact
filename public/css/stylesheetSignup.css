@@ -5,6 +5,7 @@ body {
 
 /* NAV */
 
+
 /* .hidden.menu {
     display: none;
 }
@@ -98,6 +99,7 @@ body {
     box-sizing: border-box;
 }
 
+
 /* .container #searchContainer {
     position: absolute;
     margin: auto;
@@ -125,6 +127,7 @@ body {
     /* z-index: 4 !important; */
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
+
 
 /* .container .search:hover {
     cursor: pointer;
@@ -207,6 +210,7 @@ body {
     position: absolute;
 }
 
+
 /* .container input:focus~.search::before {
     top: 0;
     left: 0;
@@ -223,6 +227,7 @@ body {
     border-radius: 0%;
     transform: rotate(-45deg);
 }
+
 
 /* .container input::placeholder {
     color: white;
@@ -356,15 +361,19 @@ body {
 
 /* CARDSSSS */
 
+
 /* .cardContainer {
     position: relative;
     height: 300px;
     top: 60px;
     flex-direction: row;
     /* overflow-x: hidden; */
-    /* left: calc(50% - 300px);
+
+
+/* left: calc(50% - 300px);
     display: flex;
 } */
+
 
 /* .cardContainer .card {
     display: flex;
@@ -464,6 +473,7 @@ body {
     width: 120px;
     transition: 0.4s ease-out;
 }
+
 
 /* .circle {
     position: absolute;

@@ -64,6 +64,38 @@ $(document).ready(function() {
                         header.addClass("header");
                         content.append(header);
 
+                        // var meta = $("<div>").html(data[i].publisher);
+                        // meta.addClass("meta");
+                        // content.append(meta);
+
+                        var description = $("<div>").html("<p>" + data[i].body + "</p>");
+                        description.addClass("description");
+                        content.append(header);
+
+                        var rating = $("<div>").html("<i>" + data[i].body + "</i>");
+                        rating.addClass("extra content");
+                        content.append(rating);
+
+                        // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
+                        // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
+                        // card.append("<p>" + "URL: " + data[i].url + "</p>");
+                        // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
+
+                        $("#factchecks").prepend(card);
+
+                    }
+
+                }
+
+            });
+        }
+    });
+
+
+                        var header = $("<div>").html(data[i].title);
+                        header.addClass("header");
+                        content.append(header);
+
                         var meta = $("<div>").html(data[i].publisher);
                         meta.addClass("meta");
                         content.append(meta);
@@ -86,9 +118,6 @@ $(document).ready(function() {
                     }
 
                 }
-
-            });
-
 
     // CARD FLIP
 
