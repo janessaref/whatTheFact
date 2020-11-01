@@ -23,15 +23,15 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Search.associate = function(models) {
-        // We're saying that a Search should belong to a User
-        // A search can't be created without a User due to the foreign key constraint
-        Search.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // Search.associate = function(models) {
+    //     // We're saying that a Search should belong to a User
+    //     // A search can't be created without a User due to the foreign key constraint
+    //     Search.belongsTo(models.User, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
     return Search;
 };
