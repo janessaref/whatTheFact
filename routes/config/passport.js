@@ -1,17 +1,8 @@
 var passport = require("passport");
-// var PassportHerokuAddon = require('passport-heroku-addon');
 var LocalStrategy = require("passport-local").Strategy;
 
 var db = require("../models");
-// passport.use(new PassportHerokuAddon({
-//     // sso_salt: process.env.SSO_SALT
-//   }));
-  
-//   app.get('/heroku/resources/:id', 
-//     passport.authenticate('heroku-addon'),
-//     function(request, response) {
-//       response.redirect("/");
-//     });
+
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(new LocalStrategy(
     // Our user will sign in using an email, rather than a "username"
@@ -19,14 +10,12 @@ passport.use(new LocalStrategy(
     //     usernameField: "username"
     // },
     function(username, password, done) {
-     
         // When a user tries to sign in this code runs
         db.User.findOne({
             where: {
                 username: username
             }
         }).then(function(dbUser) {
-            console.log(username);
             // If there's no user with the given email
             if (!dbUser) {
                 return done(null, false, {

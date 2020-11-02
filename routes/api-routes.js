@@ -1,4 +1,4 @@
-const axios = require("axios");
+// const axios = require("axios");
 //  app.get put inside of a route
 var passport = require("../config/passport");
 var db = require("../models");
@@ -6,48 +6,6 @@ var db = require("../models");
 // Routes
 // =============================================================
 module.exports = function(app) {
-    app.get("/api/search", function(req, res) {
-        db.Search.findAll({}).then(function(dbSearch) {
-            res.json(dbSearch);
-        });
-    });
-
-    app.post("/api/search", function(req, res) {
-        let search_term = req.body.search_term;
-        let apiKey = "AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI"
-        console.log("THIS IS FOR AXIOS", search_term)
-
-        axios({
-                url: `https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=${search_term}&key=${apiKey}`,
-                method: 'GET',
-                responseType: 'json',
-            })
-            .then(function(response) {
-
-                let data = response.data.claims[0]
-                let title = data.claimReview[0].title;
-                let body = data.text;
-                let url = data.claimReview[0].url;
-                let rating = data.claimReview[0].textualRating;
-
-                db.Search.create({
-                    search_term: search_term,
-                    title: title,
-                    body: body,
-                    url: url,
-                    rating: rating
-                }).then(function(dbSearch) {
-                    res.json(dbSearch);
-                });
-            })
-            .catch(err => {
-                console.error(err);
-            });
-
-
-    });
-
-
 
 
 
@@ -79,6 +37,16 @@ module.exports = function(app) {
     //   db.User.findOne({Where:{id: req.params.id}}).then(function(dbUser){
     //     res.json(dbUser);
     //   })
+
+    app.get("/api/user/:id", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbUser) {
+            res.json(dbUser)
+        });
+    });
 
     //get from the userdb
 
@@ -118,10 +86,10 @@ module.exports = function(app) {
     // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
     // otherwise send back an error
     app.post("/api/signup", function(req, res) {
-        console.log(req.body)
+        // console.log(req.body)
         db.User.create({
-                firstname: req.body.firstname,
-                lastname: req.body.lastname,
+                // firstname: req.body.firstname,
+                // lastname: req.body.lastname,
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
@@ -170,41 +138,12 @@ module.exports = function(app) {
             // Otherwise send back the user's email and id
             // Sending back a password, even a hashed password, isn't a good idea
             res.json({
+                username: req.user.username,
                 email: req.user.email,
                 id: req.user.id
             });
         }
     });
 
-    //Returning JSON data for all searches for a specific user -FROM THE API
-    app.get("/api/user/:id/search", function(req, res) {
-
-
-        //Returning JSON data for all searches for a specific user -FROM THE API
-        app.get("/api/user/:id/search", function(req, res) {
-
-            db.User.findOne({
-                Where: {
-                    id: req.params.id
-                },
-                include: [db.Search]
-
-            });
-
-            //Returns JSON DATA for a specific search belonging to a specific user
-
-            app.get("/api/user/:id/search/:searchId", function(req, res) {
-                db.User.findOne({
-                    Where: {
-                        id: req.params.id
-                    },
-                    include: [db.SearchId]
-                        //this needs more
-                }).then(function(dbUser) {
-                    res.json(dbUser);
-                });
-            });
-        })
-    });
     //END OF MODULES, DELETE AND SOMEONE MIGHT CRY!!!
 }
