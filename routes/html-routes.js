@@ -1,4 +1,5 @@
 var path = require("path");
+var authentication = require("../config/middleware/authentication");
 
 // Routes
 // =============================================================
@@ -13,13 +14,16 @@ module.exports = function(app) {
 
     // index route loads cms.html
     app.get("/", function(req, res) {
+        if (req.user) {
+            res.redirect("/user");
+        }
         res.sendFile(path.join(__dirname, "../public/index.html"));
     });
 
     // user route loads blog.html
-    app.get("/user", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/user.html"));
-    });
+    // app.get("/user", function(req, res) {
+    //     res.sendFile(path.join(__dirname, "../public/user.html"));
+    // });
 
     app.get("/about", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/about.html"));
@@ -35,7 +39,15 @@ module.exports = function(app) {
     });
 
     app.get("/login", function(req, res) {
+        if (req.user) {
+            res.redirect("/user");
+        }
         res.sendFile(path.join(__dirname, "../public/login.html"));
     });
+
+    app.get("/user", authentication, function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/user.html"));
+    });
+
 
 };

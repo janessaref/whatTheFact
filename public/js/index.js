@@ -1,88 +1,12 @@
-// const search = require("../../models/search");
-
-
 $(document).ready(function() {
 
-
-    // When user hits enter
-    $(document).on('keypress', function(event) {
-        if (event.which == 13) {
+    $(document).on('keypress', function(enter) {
+        if (enter.which == 13) {
             var userInput = $("#search").val().trim();
-            // var userSearch = encodeURIComponent(userInput);
-
-            event.preventDefault();
-            // var search = $("#searchterm").val().trim();
-            let searchTerm = {
-                search_term: userInput
-            }
-
-            // passes the data to post
-            $.ajax("/api/search", {
-                type: "POST",
-                data: searchTerm
-            }).then(
-                function() {
-                    // Reload the page to get the updated list
-                    // location.reload();
-                }
-            );
-
-
-            // When the page loads, grab all of our chirps
-            $.get("/api/search", function(data) {
-                console.log(data);
-
-                if (data.length !== 0) {
-
-                    for (var i = 0; i < data.length; i++) {
-
-                        var card = $("<div>")
-                        card.addClass("ui card");
-
-                        var content = $("<div>");
-                        content.addClass("content");
-                        card.append(content);
-
-                        var header = $("<div>")
-                        header.addClass("header");
-                        header.append("<h1>" + data[i].title + "</h1>");
-                        content.append(header);
-
-                        // var meta = $("<div>").html(data[i].publisher);
-                        // meta.addClass("meta");
-                        // content.append(meta);
-
-                        var description = $("<div>");
-                        description.addClass("description");
-                        description.append("<p>" + data[i].body + "</p>");
-                        content.append(description);
-
-                        var rating = $("<div>")
-                        rating.addClass("extra content");
-                        rating.append("<i>" + data[i].rating + "</i>");
-                        content.append(rating);
-
-                        var link = $("<a>").attr("href", data[i].url);
-                        link.append("<p>" + "Read article for " + data[i].search_term + " here")
-                        content.append(link);
-
-
-                        // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
-                        // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
-                        // card.append("<p>" + "URL: " + data[i].url + "</p>");
-                        // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
-
-                        $("#factchecks").prepend(card);
-
-                    }
-
-                }
-
-            });
+            var search = encodeURIComponent(userInput);
+            console.log(search);
         }
     });
-
-
 
 
     // CARD FLIP
@@ -133,10 +57,13 @@ $(document).ready(function() {
     });
 });
 
+
+
 var timesClicked = 1;
 
 $(".search").click(function(e) {
     timesClicked++;
+    console.log(timesClicked);
     if (timesClicked % 2 == 0) {
         async function display() {
             document.getElementById("search").style.display = "inline-block";
@@ -145,14 +72,13 @@ $(".search").click(function(e) {
             $("#search").focus();
         });
         display();
-
-        document.querySelector("h2").style.color = "#141414";
+        // Remove any old one
 
         // Setup
-        var posX = $(".search").offset().left,
-            posY = $(".search").offset().top,
-            buttonWidth = $(".search").width(),
-            buttonHeight = $(".search").height();
+        var posX = $(this).offset().left,
+            posY = $(this).offset().top,
+            buttonWidth = $(this).width(),
+            buttonHeight = $(this).height();
 
         // Add the element
         $(".search").append("<span class='ripple'></span>");
@@ -179,7 +105,82 @@ $(".search").click(function(e) {
 
     } else {
         $(".ripple").remove();
-        document.getElementById("search").style.display = "none";
-        document.querySelector("h2").style.color = "#ffff";
+        document.getElementById("search");
+        console.log("removed");
     }
+});
+
+// anime({
+//     targets: '.ui text container',
+//     translateX: 250,
+//     direction: 'alternate',
+//     loop: true,
+//     easing: 'spring(1, 80, 10, 0)'
+//   })
+
+
+
+// searchterm is the name of the ID in the html
+// this should all the be inside the search button click
+var search = $("#searchterm").val().trim();
+
+// AJAX CALL FOR FACT CHECKER
+$.ajax({
+    url: "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + search + "&key=AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI",
+    method: "GET"
+}).then(function(response) {
+    // console.log(response);
+    // console.log(response.claims[0].text)
+
+    // setting results into an object to be passed into API route
+    let results = {
+        search_term: $("#searchterm").val().trim(),
+        title: response.claims[0].claimReview[0].title,
+        body: response.claims[0].text,
+        url: response.claims[0].claimReview[0].url,
+        rating: response.claims[0].claimReview[0].textualRating
+    }
+
+    // Posts the data into the route
+    $.ajax("/api/search", {
+        type: "POST",
+        data: results
+    }).then(
+        function() {
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+
+
+});
+
+// idk if u need this but leaving it here and it grabs the saved searches to stay on the page
+// NOT INSIDE ANY BUTTON CLICK, should be outside and at the bottom of page!
+// When the page loads, grab all of our searches
+$.get("/api/search", function(data) {
+
+    // however many searches the user has, it will display the data
+    if (data.length !== 0) {
+
+        for (var i = 0; i < data.length; i++) {
+
+            // appends a new row for each search
+            var row = $("<div>");
+            // adding a css styling class named "search" to the row
+            row.addClass("search");
+
+            // appends all data in p tags inside the div
+            row.append("<p>" + "TITLE: " + data[i].title + " </p>");
+            row.append("<p>" + "TEXT: " + data[i].body + "</p>");
+            row.append("<p>" + "URL: " + data[i].url + "</p>");
+            row.append("<p>" + "RATING: " + data[i].rating + "</p>");
+
+            // searches will be stacked over each other hence prepend
+            $("#search-area").prepend(row);
+
+        }
+
+    }
+
 });

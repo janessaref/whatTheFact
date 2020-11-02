@@ -22,6 +22,7 @@ app.use(passport.session());
 // Requiring our routes
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
+// require("./routes/search-api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 // listens to the PORT
