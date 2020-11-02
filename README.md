@@ -80,27 +80,31 @@ So that users can save their searches and their data. Sure you can copy the info
 
 _How?_
 
-This was a complex task to achieve as a developer. Not because the page was overly difficult to design but because it was difficult to conceptualize. How were we going to get the data that the user called to save on the page-Jerri and Rachael spent hours discussing the file paths and how they would get from the search to the save data. There were many ideas. 
+This was a complex task to achieve as a developer. Not because the page was overly difficult to design but because it was difficult to conceptualize. We had several ideas on how to set up our user profile and build it:
+
     1. Create a members only website, where you have to log in to use the fact check and you can save your searches 
-    2. Create a front end search and a user search that has a button that allows you to save your searches into
+    2. Create a front end search and a user search that has a button that allows you to save your searches into either a:
         a. a database
         b. local storage    
 
+In the end we chose to do secret option number 3, using the first page to display instructions (per our user friendly mission) and then have a user sign in to save searches onto a database. 
+
+When a user types in the search box, a query is run for the term that is being searched in user.js where results are then posted in the form of "data" and run through a jquery call-using a for loop and some html to make it sit correctly on the page. 
  
+ ![seachfunctionality]()
 
 ### __4. A saved search__
 _What?_
 
-_Why?_
-
-_How?_
-
-### __5. Model View Control Design__
-_What?_
+An option for having a user to save the search title they just made for later reading. The article details are saved to a profile page that the user can access later. 
 
 _Why?_
 
+This too, fit into our goal of making an easy to use fact-checker website. Being able to store ideas to either share with people later or refer back to. Saving websites/data and information can get convoluted and messy with multiple devices and ways of trying to view things so we wanted to help our user be organized with their search results. 
+
 _How?_
+
+
 
 
 ##  Other
@@ -108,15 +112,14 @@ _How?_
  __For later builds__
 
 
-
- twitter fact check -reads through tweets and uses response to enter into the fact check api
- Comments section
- Icons/images that show up with claims
+ 1. twitter fact check -reads through tweets and uses response to enter into the fact check api
+ 2. Comments section
+ 3. Icons/images that show up with claims
+ 4. A Logo to go with the page 
 
 
  __What we have to say about this project__
 
- _Aaron_
 
  _Janessa_
 
@@ -131,13 +134,7 @@ _Rachael_
 
 ## Authors 
 
-Aaron Diggdon
 
-* [linkedin] (https://www.linkedin.com/in/rachael-kelm-southworth-87a3831b3) 
-
-* [github] (https://github.com/aarondig)
-
-* [portfolio](https://rksouth.github.io/responsive_portfolio/)
 
 Janessa Fong
 
@@ -152,6 +149,14 @@ Rachael Kelm-Southworth
 * [linkedin] (https://www.linkedin.com/in/rachael-kelm-southworth-87a3831b3) 
 
 * [github] (https://github.com/RKSouth/)
+
+* [portfolio](https://rksouth.github.io/responsive_portfolio/)
+
+Aaron Diggdon
+
+* [linkedin] (https://www.linkedin.com/in/rachael-kelm-southworth-87a3831b3) 
+
+* [github] (https://github.com/aarondig)
 
 * [portfolio](https://rksouth.github.io/responsive_portfolio/)
 
