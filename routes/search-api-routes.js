@@ -12,46 +12,6 @@ module.exports = function(app) {
     //     });
     // });
 
-    // app.post("/api/search", function(req, res) {
-    //             let search_term = req.body.search_term;
-    //             let apiKey = "AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI"
-
-    //             axios({
-    //                     url: `https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=${search_term}&key=${apiKey}`,
-    //                     method: 'GET',
-    //                     responseType: 'json',
-    //                 })
-    //                 .then(function(response) {
-    //                     console.log(response)
-
-    //                     for (var i = 0; i < 4; i++) {
-    //                         var data = response.data.claims[i]
-    //                         let title = data.claimReview[0].title;
-    //                         let body = data.text;
-    //                         let url = data.claimReview[0].url;
-    //                         let rating = data.claimReview[0].textualRating;
-
-    //                         app.post("/api/search", function(req, res) {
-    //                             title: req.title,
-    //                             body: req.body,
-
-    //                         }).catch(err => {
-    //                             console.error(err);
-    //                         });
-    //                     }
-    //                     // db.Search.create({
-    //                     //     search_term: search_term,
-    //                     //     title: title,
-    //                     //     body: body,
-    //                     //     url: url,
-    //                     //     rating: rating
-    //                     // }).then(function(dbSearch) {
-    //                     //     res.json(dbSearch);
-    //                     // });
-
-
-    //                 });
-
     //EXAMPLE
 
     // app.post("/api/posts", function(req, res) {
@@ -63,33 +23,40 @@ module.exports = function(app) {
 
     //Returning JSON data for all searches for a specific user -FROM THE API
     app.get("/api/user/:id/search", function(req, res) {
-
-
         //Returning JSON data for all searches for a specific user -FROM THE API
-        app.get("/api/user/:id/search", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: [db.Search]
 
-            db.User.findOne({
-                Where: {
-                    id: req.params.id
-                },
-                include: [db.Search]
+        }).then(function(dbSearch) {
+            res.json(dbSearch);
+            console.log(dbSearch)
+        });
+    });
 
-            });
+    app.post("/api/user/:id/search", function(req, res) {
+        db.Search.create({
+            title: req.body.title,
+            body: req.body.body,
+            url: req.body.url,
+            rating: req.body.rating,
+            UserId: req.params.id
+        }).then(function(dbSearch) {
+            res.json(dbSearch);
+            console.log(dbSearch)
+        });
+    });
 
-            //Returns JSON DATA for a specific search belonging to a specific user
-
-            app.get("/api/user/:id/search/:searchId", function(req, res) {
-                db.User.findOne({
-                    Where: {
-                        id: req.params.id
-                    },
-                    include: [db.SearchId]
-                        //this needs more
-                }).then(function(dbUser) {
-                    res.json(dbUser);
-                });
-            });
-        })
+    app.delete("/api/user/:id/search", function(req, res) {
+        db.Search.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbSearch) {
+            res.json(dbSearch);
+        });
     });
     //END OF MODULES, DELETE AND SOMEONE MIGHT CRY!!!
 }
