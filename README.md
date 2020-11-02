@@ -107,22 +107,12 @@ _How?_
 
  __For later builds__
 
-_Be able to clear or remove cities from the list_
 
- 
-
-_Being able to select cities based on weather conditions_
-
-
-
-_The ability to toggle what you want to see_
 
  twitter fact check -reads through tweets and uses response to enter into the fact check api
  Comments section
  Icons/images that show up with claims
 
-
-Backgrounds are fun, there should be more of them!
 
  __What we have to say about this project__
 
