@@ -14,21 +14,21 @@ module.exports = function(app) {
 
         }).then(function(dbSearch) {
             res.json(dbSearch);
-            console.log(dbSearch)
+            // console.log(dbSearch)
         });
     });
 
-    app.post("/api/user/:id/search", function(req, res) {
-        //Returning JSON data for all searches for a specific user -FROM THE API
-        db.User.findOne({
+    app.delete("/api/user/:id/search", function(req, res) {
+
+        db.Search.destroy({
             where: {
-                id: req.params.id
+                id: req.params.id,
             },
             include: [db.Search]
 
         }).then(function(dbSearch) {
             res.json(dbSearch);
-            console.log(dbSearch)
+            // console.log(dbSearch)
         });
     });
 
