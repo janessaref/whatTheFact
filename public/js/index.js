@@ -110,15 +110,6 @@ $(".search").click(function(e) {
     }
 });
 
-// anime({
-//     targets: '.ui text container',
-//     translateX: 250,
-//     direction: 'alternate',
-//     loop: true,
-//     easing: 'spring(1, 80, 10, 0)'
-//   })
-
-
 
 // searchterm is the name of the ID in the html
 // this should all the be inside the search button click

@@ -1,10 +1,12 @@
 body {
-    background-color:#121213 !important;
+    background-color: #121213 !important;
 }
+
 
 /* p {
     color: blue;
 } */
+
 
 /* NAV */
 
@@ -25,13 +27,13 @@ body {
     /* height: 100vh !important; */
     height: 100vh !important;
 }
+
 .footer {
     position: relative;
     bottom: 0;
     width: 100%;
     height: 35px;
-  }
-
+}
 
 #mainHead {
     font-size: 100px;
@@ -113,8 +115,6 @@ body {
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
 }
 
-
-
 .col-md-6 {
     margin-top: 20%;
 }
@@ -159,7 +159,6 @@ body {
     letter-spacing: 0.1em;
     /* display: none; */
 }
-
 
 
 /* #search {
@@ -251,9 +250,6 @@ body {
         font-size: 1.5em;
         text-align: center;
     }
- 
-       
-    
     .cardContainer {
         display: inline-flex !important;
     }
@@ -309,7 +305,6 @@ body {
     left: 50px;
     transition: 0.4s ease-out;
 } */
-
 
 .cardContainer .card.active {
     z-index: 3;
@@ -379,6 +374,8 @@ body {
 img {
     opacity: 0.7;
 }
+
+
 /* .circle {
     position: absolute;
     top: 150px;

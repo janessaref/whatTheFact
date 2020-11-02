@@ -2,41 +2,23 @@
 
 
 $(document).ready(function() {
+    // welcomes members
     $.get("/api/user_data").then(function(data) {
         $(".member-name").text(JSON.stringify(data.username));
-      });
-
+    });
     // When user hits enter
     $(document).on('click', "#searchterm", function(event) {
-      
-
+        $(".three").empty();
         // if (event.which == 13) {
         var userInput = $("#search-input").val();
         console.log(userInput);
         let apiKey = "AIzaSyAYJ05r2WOK34MO9zLkmaz0Ux9NWnYTCcI"
         var queryURL = "https://factchecktools.googleapis.com/v1alpha1/claims:search?languageCode=en&query=" + userInput + "&key=" + apiKey;
-        // var userSearch = encodeURIComponent(userInput);
 
         event.preventDefault();
-        // var search = $("#searchterm").val().trim();
-        // let searchTerm = {
-        //     search_term: userInput
-        // }
-
-        // // passes the data to post
-        // $.ajax("/api/search", {
-        //     type: "POST",
-        //     data: searchTerm
-        // }).then(
-        //     function() {
-        //         // Reload the page to get the updated list
-        //         // location.reload();
-        //     }
-        // );
 
         $.get(queryURL, function(response) {
-            console.log(response)
-
+            // loops through the responses
             if (response.claims.length !== 0) {
                 for (var i = 0; i < 6; i++) {
                     var data = response.claims[i];
@@ -45,135 +27,58 @@ $(document).ready(function() {
                     var url = data.claimReview[0].url;
                     var rating = data.claimReview[0].textualRating;
 
-
+                    // displays the facts in cards
                     var fact =
-                        `<div class="card">
-                        <div class="ui inverted segment id="${i}">
-                                <P>${title}</P>
+                        `    
+                            <div class="card">
+                        <div class="ui inverted segment">
+                                <P id="title-${i}">${title}</P>
                                 <div class="ui inverted divider"></div>
-                                <p>${body}</p>
-                                <i>${rating}</i>
-                                <h4><a href=${url}><p>Read Article Here</p></a><h4>
-                                <button type='submit' class='btn btn-default'>SAVE</button>
+                                <p id="body-${i}">${body}</p>
+                                <i id="rating-${i}">${rating}</i>
+                                <h4><a href=${url} data-url${i}="${url}"><p>Read Article Here</p></a><h4>
+                                <button type='submit' class='btn btn-default' id="saveBtn" data-id="${i}">SAVE</button>
                             </div>   
                             </div>    
                         `
-
-                    // <div class="ui three stackable cards">
+                        // appends to the html
                     $(".three").append(fact);
-
-
-
-
-                    // var card = $("<div>")
-                    // card.addClass("ui card");
-
-                    // var content = $("<div>");
-                    // content.addClass("content");
-                    // card.append(content);
-
-                    // var header = $("<div>")
-                    // header.addClass("header");
-                    // header.append("<h1>" + title + "</h1>");
-                    // content.append(header);
-
-                    // // var meta = $("<div>").html(data[i].publisher);
-                    // // meta.addClass("meta");
-                    // // content.append(meta);
-
-                    // var description = $("<div>");
-                    // description.addClass("description");
-                    // description.append("<p>" + body + "</p>");
-                    // content.append(description);
-
-                    // var rating = $("<div>")
-                    // rating.addClass("extra content");
-                    // rating.append("<i>" + rating + "</i>");
-                    // content.append(rating);
-
-                    // var link = $("<a>").attr("href", url);
-                    // link.append("<p>" + "Read article for " + userInput + " here")
-                    // content.append(link);
-
-                    // var saveBtn = $("<button>");
-                    // saveBtn.attr("type", "submit");
-                    // saveBtn.addClass("btn btn-default");
-                    // saveBtn.append(`<p>"SAVE"</p>`);
-                    // content.append(saveBtn);
-
-                    // $("#factchecks").prepend(card);
-
-                }
-            }
-
-            //create data variables
-            //with for loop
-            // append them to page
+                };
+            };
         });
-
-
-        // // When the page loads, grab all of our searches
-        // $.get("/api/search", function(data) {
-        //     console.log(data);
-
-        //     if (data.length !== 0) {
-
-        //         for (var i = 0; i < data.length; i++) {
-
-        //             var card = $("<div>")
-        //             card.addClass("ui card");
-
-        //             var content = $("<div>");
-        //             content.addClass("content");
-        //             card.append(content);
-
-        //             var header = $("<div>")
-        //             header.addClass("header");
-        //             header.append("<h1>" + data[i].title + "</h1>");
-        //             content.append(header);
-
-        //             // var meta = $("<div>").html(data[i].publisher);
-        //             // meta.addClass("meta");
-        //             // content.append(meta);
-
-        //             var description = $("<div>");
-        //             description.addClass("description");
-        //             description.append("<p>" + data[i].body + "</p>");
-        //             content.append(description);
-
-        //             var rating = $("<div>")
-        //             rating.addClass("extra content");
-        //             rating.append("<i>" + data[i].rating + "</i>");
-        //             content.append(rating);
-
-        //             var link = $("<a>").attr("href", data[i].url);
-        //             link.append("<p>" + "Read article for " + data[i].search_term + " here")
-        //             content.append(link);
-
-        //             var saveBtn = $("<button>");
-        //             saveBtn.attr("type", "submit");
-        //             saveBtn.addClass("btn btn-default");
-        //             saveBtn.append(`<p>"SAVE"</p>`);
-        //             content.append(saveBtn);
-
-
-        //             // card.append("<h2>" + "TITLE: " + data[i].title + " </h2>");
-        //             // card.append("<p>" + "TEXT: " + data[i].body + "</p>");
-        //             // card.append("<p>" + "URL: " + data[i].url + "</p>");
-        //             // card.append("<p>" + "RATING: " + data[i].rating + "</p>");
-
-        //             $("#factchecks").prepend(card);
-
-        //         }
-
-        //     }
-
-        // });
-        // }
     });
 
 
+    $(document).on('click', "#saveBtn", function(event) {
+        event.preventDefault();
+        var savedTitle = $("#title-" + $(this).data("id"));
+        var savedBody = $("#body-" + $(this).data("id"));
+        var savedRating = $("#rating-" + $(this).data("id"));
+        var savedURL = $("#title-" + $(this).data("id"));
+        // var savingURL = $($(this).data("url" + $(this).data("id")));
+        // var urlll = $(this).data("url-");
+        // var concatURL = urlll + $(this).data("id");
 
+        // console.log(savedTitle);
+        // console.log(savedTitle[0].innerHTML);
+        // console.log(savedTitle[0].parentElement.children[4].outerHTML);
+
+        var savedResults = {
+
+            title: savedTitle[0].innerHTML,
+            body: savedBody[0].innerHTML,
+            url: savedURL[0].parentElement.children[4].outerHTML,
+            rating: savedRating[0].innerHTML,
+        };
+
+        console.log(savedResults)
+
+        $.get("/api/user_data").then(function(data) {
+            var id = data.id
+            $.post("/api/user/" + id + "/search", savedResults);
+
+        });
+    });
 
     // CARD FLIP
 
