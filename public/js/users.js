@@ -32,7 +32,7 @@ $(document).ready(function() {
                         `    
                             <div class="card">
                         <div class="ui inverted segment">
-                                <P id="title-${i}">${title}</P>
+                                <p id="title-${i}">${title}</p>
                                 <div class="ui inverted divider"></div>
                                 <p id="body-${i}">${body}</p>
                                 <i id="rating-${i}">${rating}</i>
