@@ -4,89 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" type="text/css" href="css/stylesheetSignup.css">
-
+    <title>WTF: Sign In</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheetSignup.css">
 </head>
 
 <body>
     <div class="pusher">
         <div class="ui inverted vertical masthead center aligned segment">
-
+            <!-- Navbar -->
             <div class="ui container">
                 <div class="ui inverted pointing menu">
-                    <!-- <a class="toc item"> -->
-                    <!-- <i class="sidebar icon"></i> -->
-                    <!-- </a> -->
                     <a class="item" href="/">Home</a>
-                    <!-- <a class="item" href="/featured">Featured</a> -->
                     <a class="item" href="/about">About</a>
                     <a class="item" href="/contact">Contact</a>
-                    <a class="active item right floated" href="/login">Login</a>
-                    <p class="item">/</p>
+                    <a class="active item right floated" href="/login">Sign in</a>
                     <a class="item" href="/signup">Sign Up</a>
                 </div>
             </div>
+            <!-- Main Container -->
             <div class="ui text container">
-                <h1>
+                <!-- Header -->
+                <h1 class="header" style="margin:10%;">
                     What the Fact?
                 </h1>
                 <div class="ui inverted divider"></div>
 
-
                 <!-- FORM!! -->
                 <div class="ui inverted segment" id="mainContainer">
-                    <!-- <div class="col-md-6 col-md-3" style="margin-left: 30%;"> -->
-                    <h2>Login Form</h2>
+                    <!-- Sign In -->
+                    <h2>Sign In Form</h2>
                     <div class="ui inverted divider"></div>
-                    <!-- </div> -->
-                    <!-- <div class="ui inverted segment" id="mainContainer"> -->
                     <form class="login">
+                        <!-- Username Input -->
                         <div class="form-group">
-                            <label for="exampleInputusername1"><h4> username </h4></label>
-                            <input type="username" class="form-control" id="username-input" placeholder="username">
+                            <label for="username">
+                                <h4> Username </h4>
+                            </label>
+                            <input type="username" class="form-control" style=" margin-top: 5px" id="username-input" placeholder="Username">
                         </div>
-                        <!-- </div> -->
-                        <!-- <div class="ui inverted segment" id="mainContainer"> -->
-                        <div class="form-group">
-                            <label for="exampleInputPassword1"><h4>Password </h4></label>
-                            <input type="password" class="form-control" id="password-input" placeholder="Password">
+                        <!-- Password Input -->
+                        <div class="form-group" style="margin-top: 10px">
+                            <label for="password">
+                                <h4>Password</h4>
+                            </label>
+                            <input type="password" class="form-control" id="password-input" style=" margin-top: 5px" placeholder="Password">
                         </div>
+                        <!-- Error alert for invalid inputs -->
                         <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                             <span class="sr-only">Error:</span> <span class="msg"></span>
                         </div>
-                        <button type="submit" class="btn btn-default">Login</button>
+                        <!-- Login button -->
+                        <button type="submit" class="ui inverted teal basic button" style="margin-top: 15px;">Login</button>
                     </form>
                     <h4 class="ui horizontal inverted divider">
-                        <!-- <a href="#">Link to Github Repo</a> -->
                         <p>WTF</p>
                     </h4>
                 </div>
-                <br />
-                <!-- <p>Or sign up <a href="/signup">here</a></p> -->
-            </div>
-            <!-- </div>  -->
-        </div>
-        <!-- </div> -->
-        <!-- <div class="box" id="bigBox"></div> -->
-    </div>
-    </div>
-
-    <!-- Footer -->
-
-    <div class="ui inverted vertical footer segment">
-        <div class="ui container">
-            <div class="ui inverted equal height grid">
-                <div class="column">
-                    <h4 class="ui inverted centered header" style="text-align: center; padding:10px; font-weight: 100;">Copyright 2020</h4>
-                </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
