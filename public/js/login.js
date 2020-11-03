@@ -34,13 +34,9 @@ $(document).ready(function() {
             .then(function(data) {
                 //replace the whole window (everything you see in the browser with the members)
                 window.location.replace("/user");
-                // If there's an error, log the error
             })
-            .catch(handleLoginErr);
-    }
-
-    function handleLoginErr(err) {
-        $("#alert .msg").text(JSON.stringify(err.responseJSON.msg).replace(/"/g, ""));
-        $("#alert").fadeIn(500);
+            .catch(function(err) {
+                console.log(err);
+            });
     }
 });

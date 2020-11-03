@@ -58,8 +58,8 @@ $(document).ready(function() {
         });
     };
 
+    // creates the cards for our saved searches
     function createNewRow(search) {
-
         var savedSearchCards =
             `    
         <div class="card inverted factCard">
@@ -73,42 +73,9 @@ $(document).ready(function() {
         </div>    
     `
         return savedSearchCards;
+    };
 
-        // var newSaveSearchCard = $("<div>");
-        // newSaveSearchCard.addClass("card");
-        // var searchCardHeading = $("<div>");
-        // searchCardHeading.addClass("ui inverted segment");
-        // var deleteBtn = $("<button>");
-        // deleteBtn.text("x");
-        // deleteBtn.addClass("delete btn btn-danger");
-        // var editBtn = $("<button>");
-        // editBtn.text("EDIT");
-        // editBtn.addClass("edit btn btn-default");
-        // var searchTitle = $("<h4>");
-        // // var searchPublisher = $("<h5>");
-        // // searchPublisher.text("Published by: " + );
-        // // searchPublisher.css({
-        // //   float: "right",
-        // //   color: "blue",
-        // //   "margin-top":
-        // //   "-10px"
-        // // });
-        // var newCardBody = $("<div>");
-        // newCardBody.addClass("ui inverted divider");
-        // var searchBody = $("<p>");
-        // searchTitle.text(search.title);
-        // searchBody.text(search.body);
-        // searchCardHeading.append(deleteBtn);
-        // searchCardHeading.append(editBtn);
-        // searchCardHeading.append(searchTitle);
-        // // searchCardHeading.append(searchPublisher);
-        // newCardBody.append(searchBody);
-        // newSaveSearchCard.append(searchCardHeading);
-        // newSaveSearchCard.append(newCardBody);
-        // newSaveSearchCard.data("search", search);
-        // return newSaveSearchCard;
-    }
-
+    // If the user doesn't have any saved facts, display this text and navigate them back to the search page
     function displayEmpty(id) {
         var query = window.location.search;
         var partial = "";
@@ -121,6 +88,5 @@ $(document).ready(function() {
         messageH2.html("No saved searches yet" + partial + ", navigate <a href='/user" + query +
             "'>here</a> in order to get started.");
         savedSearchContainer.append(messageH2);
-    }
-
+    };
 });

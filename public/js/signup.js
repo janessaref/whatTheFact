@@ -4,15 +4,11 @@ $(document).ready(function() {
     var emailInput = $("input#email-input");
     var passwordInput = $("input#password-input");
     var usernameInput = $("input#username-input");
-    // var firstnameInput = $("input#firstname-input");
-    // var lastnameInput = $("input#lastname-input");
 
-    // When the signup button is clicked, we validate the email and password are not blank
+    // When the signup button is clicked, we validate the email and password are not blank as well as the username
     signUpForm.on("submit", function(event) {
         event.preventDefault();
         var userData = {
-            // firstname: firstnameInput.val().trim(),
-            // lastname: lastnameInput.val().trim(),
             username: usernameInput.val().trim(),
             email: emailInput.val().trim(),
             password: passwordInput.val().trim()
@@ -23,8 +19,6 @@ $(document).ready(function() {
         }
         // If we have an email and password, run the signUpUser function
         signUpUser(userData.username, userData.email, userData.password);
-        // firstnameInput.val("");
-        // lastnameInput.val("");
         usernameInput.val("");
         emailInput.val("");
         passwordInput.val("");
@@ -34,19 +28,18 @@ $(document).ready(function() {
     // Otherwise we log any errors
     function signUpUser(username, email, password) {
         $.post("/api/signup", {
-                // firstname: firstname,
-                // lastname: lastname,
                 username: username,
                 email: email,
                 password: password
             })
             .then(function(data) {
                 window.location.replace("/user");
-                // If there's an error, handle it by throwing up a bootstrap alert
             })
+            // If there's an error, handle it by throwing up a bootstrap alert
             .catch(handleLoginErr);
     }
 
+    // sends error to the user on the signup page
     function handleLoginErr(err) {
         $("#alert .msg").text(JSON.stringify(err.responseJSON.msg).replace(/"/g, ""));
         $("#alert").fadeIn(500);

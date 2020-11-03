@@ -24,8 +24,6 @@ module.exports = function(app) {
     // when the user signs up, save their credentials into the user database
     app.post("/api/signup", function(req, res) {
         db.User.create({
-                // firstname: req.body.firstname,
-                // lastname: req.body.lastname,
                 username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
