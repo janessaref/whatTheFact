@@ -14,7 +14,6 @@ module.exports = function(app) {
 
         }).then(function(dbSearch) {
             res.json(dbSearch);
-            // console.log(dbSearch)
         });
     });
 };
