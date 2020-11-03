@@ -62,12 +62,12 @@ $(document).ready(function() {
 
         var savedSearchCards =
             `    
-        <div class="card">
+        <div class="card factCard">
          <div class="ui inverted segment">
             <p id="title">${search.title}</p>
             <div class="ui inverted divider"></div>
             <p id="text">${search.body}</p>
-            <i id="rating">${search.rating}</i>
+            <i id="rating">Rating: ${search.rating}</i>
             ${search.url}
             <button type='submit' class="btn btn-danger deleteBtn">X</button>
         </div>   

@@ -4,7 +4,7 @@
 $(document).ready(function() {
     // welcomes members
     $.get("/api/user_data").then(function(data) {
-        $(".member-name").text(JSON.stringify(data.username));
+        $(".member-name").text(JSON.stringify(data.username).split());
     });
     // When user hits enter
     $(document).on('click', "#searchterm", function(event) {
@@ -55,13 +55,6 @@ $(document).ready(function() {
         var savedBody = $("#body-" + $(this).data("id"));
         var savedRating = $("#rating-" + $(this).data("id"));
         var savedURL = $("#title-" + $(this).data("id"));
-        // var savingURL = $($(this).data("url" + $(this).data("id")));
-        // var urlll = $(this).data("url-");
-        // var concatURL = urlll + $(this).data("id");
-
-        // console.log(savedTitle);
-        // console.log(savedTitle[0].innerHTML);
-        // console.log(savedTitle[0].parentElement.children[4].outerHTML);
 
         var savedResults = {
 
@@ -76,7 +69,6 @@ $(document).ready(function() {
         $.get("/api/user_data").then(function(data) {
             var id = data.id
             $.post("/api/user/" + id + "/search", savedResults);
-
         });
     });
 

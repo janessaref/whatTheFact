@@ -5,7 +5,7 @@ var db = require("../models");
 module.exports = function(app) {
 
     app.get("/api/user/:id/search", function(req, res) {
-        //Returning JSON data for all searches for a specific user -FROM THE API
+        //Returning JSON data for all their saved searches for a specific user -FROM THE API
         db.User.findOne({
             where: {
                 id: req.params.id
@@ -17,20 +17,4 @@ module.exports = function(app) {
             // console.log(dbSearch)
         });
     });
-
-    app.delete("/api/user/:id/search", function(req, res) {
-
-        db.Search.destroy({
-            where: {
-                id: req.params.id,
-            },
-            include: [db.Search]
-
-        }).then(function(dbSearch) {
-            res.json(dbSearch);
-            // console.log(dbSearch)
-        });
-    });
-
-
 };

@@ -87,10 +87,7 @@ body {
     margin-top: 10vh !important;
     outline: solid;
     outline-color: grey;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 40px;
     /* border-radius: 20px; */
 }
 
@@ -99,6 +96,13 @@ body {
         display: none;
         outline: none;
     }
+}
+
+.factCard {
+    height: auto;
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Inconsolata:700");
