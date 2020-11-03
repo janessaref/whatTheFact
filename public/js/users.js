@@ -2,13 +2,18 @@
 
 
 $(document).ready(function() {
+    $(".searchCardsContainer").css("display", "hidden");
     // welcomes members
     $.get("/api/user_data").then(function(data) {
-        $(".member-name").text(JSON.stringify(data.username).split());
+        let username = JSON.stringify(data.username);
+        username = username.replace(/"/g, "")
+        $(".member-name").text(` to the fact checker ${username}!`);
     });
+
     // When user hits enter
     $(document).on('click', "#searchterm", function(event) {
         $(".three").empty();
+        $(".searchCardsContainer").css("display", "block");
         // if (event.which == 13) {
         var userInput = $("#search-input").val();
         console.log(userInput);
@@ -30,7 +35,7 @@ $(document).ready(function() {
                     // displays the facts in cards
                     var fact =
                         `    
-                            <div class="card">
+                            <div class="card searchCard">
                         <div class="ui inverted segment">
                                 <p id="title-${i}">${title}</p>
                                 <div class="ui inverted divider"></div>
@@ -42,7 +47,7 @@ $(document).ready(function() {
                             </div>    
                         `
                         // appends to the html
-                    $(".three").append(fact);
+                    $(".userSearches").append(fact);
                 };
             };
         });

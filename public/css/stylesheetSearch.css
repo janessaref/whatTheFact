@@ -24,7 +24,8 @@
     margin-right: 20px;
 }
 
-.results {
+.results,
+h2 {
     text-align: center;
 }
 
@@ -42,6 +43,19 @@ body {
     outline-color: grey;
     padding: 40px;
     /* border-radius: 20px; */
+}
+
+.searchCard {
+    height: auto;
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#mainHead {
+    /* margin: 3%; */
+    font-size: 60px;
+    color: white;
 }
 
 
