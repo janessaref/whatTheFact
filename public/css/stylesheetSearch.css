@@ -24,8 +24,24 @@
     margin-right: 20px;
 }
 
+.results {
+    text-align: center;
+}
+
 body {
     background-color: #121213 !important;
+}
+
+.searchCardsContainer {
+    max-width: 100vw !important;
+    height: 300px;
+    overflow: auto;
+    margin: 0 auto;
+    margin-top: 5vh !important;
+    outline: solid;
+    outline-color: grey;
+    padding: 40px;
+    /* border-radius: 20px; */
 }
 
 
