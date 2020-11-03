@@ -31,7 +31,7 @@ $(document).ready(function() {
                 password: password
             })
             //only after that run this function
-            .then(function() {
+            .then(function(data) {
                 //replace the whole window (everything you see in the browser with the members)
                 window.location.replace("/user");
                 // If there's an error, log the error
@@ -40,7 +40,7 @@ $(document).ready(function() {
     }
 
     function handleLoginErr(err) {
-        $("#alert .msg").text(JSON.stringify(err.responseJSON));
+        $("#alert .msg").text(JSON.stringify(err.responseJSON.msg).replace(/"/g, ""));
         $("#alert").fadeIn(500);
     }
 });

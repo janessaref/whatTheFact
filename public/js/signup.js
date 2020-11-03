@@ -47,8 +47,8 @@ $(document).ready(function() {
             .catch(handleLoginErr);
     }
 
-    function handleLoginErr(err, response) {
-        $("#alert .msg").text(err.response.JSON);
+    function handleLoginErr(err) {
+        $("#alert .msg").text(JSON.stringify(err.responseJSON.msg).replace(/"/g, ""));
         $("#alert").fadeIn(500);
     }
 });

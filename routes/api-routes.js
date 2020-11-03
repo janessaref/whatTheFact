@@ -34,8 +34,7 @@ module.exports = function(app) {
             .then(function() {
                 res.redirect(307, "/api/login");
             }, function(err) {
-                console.log(err)
-                res.status(401).json(err);
+                res.status(401).json({ msg: "Invalid email or password. Password must be 8 characters long" });
             });
     });
 
