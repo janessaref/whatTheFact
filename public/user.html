@@ -3,15 +3,14 @@
 
 <head>
     <!-- Title but the heading -on the browser not the page -->
-    <title>WTF: WHAT THE FACT</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WTF: WHAT THE FACT</title>
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="css/stylesheetSignup.css">
-
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheetSearch.css">
 
     <body>
         <div class="pusher">
@@ -19,57 +18,58 @@
             <div class="ui inverted vertical masthead center aligned segment">
                 <!-- Navbar -->
                 <div class="ui container">
-                    <div class="ui large secondary inverted pointing menu">
-                        <a class="toc item">
-                            <i class="sidebar icon"></i>
-                        </a>
-                        <a class="active item" href="/">Home</a>
-                        <a class="item" href="/about">About</a>
-                        <a class="item" href="/contact">Contact</a>
-
+                    <div class="ui inverted pointing menu">
+                        <a class="active item" href="/user">Search</a>
                         <a class="item right floated" href="/profile">Profile</a>
-                        <p class="item">/</p>
                         <a class="item" href="/logout">Sign Out</a>
                     </div>
                 </div>
                 <!-- end of navbar -->
 
-                <!-- header -->
+                <!-- Main Container -->
                 <div class="ui left aligned container" id="mainContainer">
+                    <!-- Header -->
                     <h1 id="mainHead">
                         What the Fact?
                     </h1>
                     <div class="ui inverted divider"></div>
-                    <h2>Welcome <span class="member-name"></span>
+                    <!-- Welcome the user -->
+                    <h2>Welcome to the fact checker <span class="member-name"></span>
                         <!-- end of header -->
 
                         <!-- search form -->
                         <form class="login">
                             </br>
                             <label for="exampleInputsearch1">Check Your Claim</label>
-                            <input type="search" class="form-control" id="search-input" placeholder="search">
+                            <input type="search" class="form-control" id="search-input" placeholder="Search">
                             </input>
                             </br>
-                            <button id="searchterm" type="submit" class="btn btn-default">Search</button>
+                            <button id="searchterm" type="submit" class="ui inverted teal basic button">Search</button>
                         </form>
                     </h2>
                 </div>
-
                 <!-- end of search -->
+
+                <!-- Container for search results -->
                 <div class="ui left aligned container" id="mainContainer">
                     <div class="ui inverted divider"></div>
-                    </br>
-                    <h2> Your Results</h2>
-                    <!-- card carousel -->
-                    <div class="ui three stackable cards">
-                        <!-- THIS IS WHERE THE CARDS GET PUT INTO -->
+                    <h2 class="results">Your Results</h2>
+                    <div class="ui inverted divider">
+                        <!-- cards container -->
+                        <div class=" ui container searchCardsContainer">
+                            <!-- Search Cards go in here -->
+                            <div class="ui inverted three stackable cards userSearches">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- calling the member.js and the jquery/ajax library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/users.js"></script>
 
     </body>

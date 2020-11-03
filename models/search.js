@@ -1,4 +1,4 @@
-// Creating our Search model
+// Creating our Search model for grabbing information from our API which are title, text/body, url link and the rating
 module.exports = function(sequelize, DataTypes) {
     var Search = sequelize.define("Search", {
         title: {
@@ -28,6 +28,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         });
     };
-
     return Search;
 };
