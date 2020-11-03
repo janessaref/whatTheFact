@@ -62,7 +62,7 @@ $(document).ready(function() {
 
         var savedSearchCards =
             `    
-        <div class="card factCard">
+        <div class="card inverted factCard">
          <div class="ui inverted segment">
             <p id="title">${search.title}</p>
             <div class="ui inverted divider"></div>

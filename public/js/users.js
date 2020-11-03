@@ -35,14 +35,14 @@ $(document).ready(function() {
                     // displays the facts in cards
                     var fact =
                         `    
-                            <div class="card searchCard">
+                            <div class="card inverted searchCard">
                         <div class="ui inverted segment">
                                 <p id="title-${i}">${title}</p>
                                 <div class="ui inverted divider"></div>
                                 <p id="body-${i}">${body}</p>
                                 <i id="rating-${i}">Rating: ${rating}</i>
                                 <h4><a href=${url} data-url${i}="${url}"><p>Read Article Here</p></a><h4>
-                                <button type='submit' class='btn btn-default' id="saveBtn" data-id="${i}">SAVE</button>
+                                <button type="submit" id ="saveBtn" class="ui inverted teal basic button" data-id="${i}">SAVE FACT</button>
                             </div>   
                             </div>    
                         `

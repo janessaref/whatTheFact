@@ -32,10 +32,11 @@
 }
 
 .factCard {
-    height: auto;
+    height: 230px;
     padding: 20px;
     margin-left: 20px;
     margin-right: 20px;
+    overflow: auto;
 }
 
 .results,
@@ -60,16 +61,21 @@ body {
 }
 
 .searchCard {
-    height: auto;
+    height: 230px;
     padding: 20px;
     margin-left: 20px;
     margin-right: 20px;
+    overflow: auto;
 }
 
 #mainHead {
     /* margin: 3%; */
     font-size: 60px;
     color: white;
+}
+
+button.teal {
+    text-align: center;
 }
 
 
