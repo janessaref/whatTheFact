@@ -69,7 +69,6 @@ $(document).ready(function() {
             <p id="text">${search.body}</p>
             <i id="rating">Rating: ${search.rating}</i>
             ${search.url}
-            <button type='submit' class="btn btn-danger deleteBtn">X</button>
         </div>   
         </div>    
     `
