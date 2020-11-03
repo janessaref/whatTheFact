@@ -3,7 +3,7 @@
     height: 600px;
     overflow: auto;
     margin: 0 auto;
-    margin-top: 10vh !important;
+    margin-top: 5vh !important;
     outline: solid;
     outline-color: grey;
     padding: 40px;
@@ -15,6 +15,20 @@
         display: none;
         outline: none;
     }
+    div.searchCardsContainer {
+        display: hidden;
+        outline: none;
+    }
+}
+
+#search-input {
+    max-width: 50vw;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.member-name {
+    color: #09c6f9;
 }
 
 .factCard {

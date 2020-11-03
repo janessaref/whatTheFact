@@ -2,12 +2,12 @@
 
 
 $(document).ready(function() {
-    $(".searchCardsContainer").css("display", "hidden");
+    $(".searchCardsContainer").css("display", "none");
     // welcomes members
     $.get("/api/user_data").then(function(data) {
         let username = JSON.stringify(data.username);
         username = username.replace(/"/g, "")
-        $(".member-name").text(` to the fact checker ${username}!`);
+        $(".member-name").text(` ${username}!`);
     });
 
     // When user hits enter
